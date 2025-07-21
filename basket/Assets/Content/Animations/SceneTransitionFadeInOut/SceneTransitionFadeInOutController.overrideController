@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SceneTransitionFadeInOutController
+  m_Controller: {fileID: 9100000, guid: c6dc0de82d8ab4b4fb04f8c994db1ec4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4458d7fab35724d4c89c787353ba298d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 15e6818b32fafb44fa00103c7c87ce9f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 797503de303f5364dad202592f319f9f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f5e7e595ff56f3d48afb1ad22c02ba92, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fc10057ca947ae34d8e6df1c41864715, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fba6de4c8a5b9a547b1a3ea30127c70c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cd1989cf1f4f3514ab9cf48e99b7aa3d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3ef3faf78cb21fb489b5a1c296ca06fd, type: 2}

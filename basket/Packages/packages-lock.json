@@ -1,5 +1,47 @@
 {
   "dependencies": {
+    "com.rossogames.rossoforge-core": {
+      "version": "file:com.rossogames.rossoforge-core",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.rossogames.rossoforge-events": {
+      "version": "file:com.rossogames.rossoforge-events",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.rossogames.rossoforge-popups": {
+      "version": "file:com.rossogames.rossoforge-popups",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.rossogames.rossoforge-scenes": {
+      "version": "file:com.rossogames.rossoforge-scenes",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.rossogames.rossoforge-services": {
+      "version": "file:com.rossogames.rossoforge-services",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.rossogames.rossoforge-toolbar": {
+      "version": "file:com.rossogames.rossoforge-toolbar",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.rossogames.rossoforge-ui": {
+      "version": "file:com.rossogames.rossoforge-ui",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.17",
       "depth": 0,

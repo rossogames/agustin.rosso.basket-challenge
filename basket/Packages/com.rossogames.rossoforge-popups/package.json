@@ -1,0 +1,44 @@
+{
+  "name": "com.rossogames.rossoforge-popups",
+  "version": "1.0.0-beta1",
+  "displayName": "Rossoforge-Popups",
+  "description": "A modular and extensible popup system for Unity. Designed with clean architecture principles (MVP, interfaces, event-driven), Rossoforge Popups allows developers to easily create, present, and manage popup windows with full control over their lifecycle and interaction behavior. Ideal for confirmation dialogs, alerts, input prompts, and more",
+  "unity": "2021.3",
+  "author": {
+    "name": "Agustin Rosso",
+    "url": "https://www.linkedin.com/in/rossoagustin/"
+  },
+  "keywords": [
+    "rossogames",
+    "rossoforge",
+    "popup",
+    "popups"
+  ],
+  "samples": [
+    {
+      "displayName": "Popup Essentials",
+      "description": "Contains the base prefab and animator controller used in all popups",
+      "path": "Samples~/PopupBase"
+    },
+    {
+      "displayName": "Popup Template",
+      "description": "Popup's Template ready to adapt, implements a variant of the base popup. Requires 'Popup Essentials'",
+      "path": "Samples~/PopupTemplate"
+    },
+    {
+      "displayName": "Popup Animation - FadeInOut",
+      "description": "Contains the animation assets to give the fade in/out effect when opening and closing the popup",
+      "path": "Samples~/PopupAnimationFadeInOut"
+    },
+    {
+      "displayName": "Popup Animation - SizeInOut",
+      "description": "Contains the animation assets to give the size in/out effect when opening and closing the popup",
+      "path": "Samples~/PopupAnimationSizeInOut"
+    },
+    {
+      "displayName": "Popup usage demo",
+      "description": "Contains a demonstration of how to use the popup. Requires 'Popup Essentials', 'Popup Template', and at least one animation sample.",
+      "path": "Samples~/PopupDemo"
+    }
+  ]
+}

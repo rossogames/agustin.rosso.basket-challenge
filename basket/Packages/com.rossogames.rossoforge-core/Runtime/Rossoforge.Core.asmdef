@@ -1,0 +1,16 @@
+{
+    "name": "Rossoforge.Core",
+    "rootNamespace": "Rossoforge.Core",
+    "references": [
+        "Unity.Addressables"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
