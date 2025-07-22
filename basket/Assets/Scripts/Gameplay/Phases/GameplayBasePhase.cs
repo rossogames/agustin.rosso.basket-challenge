@@ -1,6 +1,7 @@
 using Basket.Gameplay.Service;
 using Basket.General;
 using Rossoforge.Core.Events;
+using Rossoforge.Scenes.Service;
 using Rossoforge.Services;
 using UnityEngine;
 
@@ -9,13 +10,14 @@ namespace Basket.Gameplay.Phases
     public class GameplayBasePhase : IState
     {
         protected readonly IEventService _eventService;
-
+        protected readonly ISceneService _sceneService;
         protected GameplayStateMachine StateMachine { get; private set; }
 
         public GameplayBasePhase(GameplayStateMachine stateMachine)
         {
             StateMachine = stateMachine;
             _eventService = ServiceLocator.Get<IEventService>();
+            _sceneService = ServiceLocator.Get<ISceneService>();
         }
 
         public virtual void Enter()

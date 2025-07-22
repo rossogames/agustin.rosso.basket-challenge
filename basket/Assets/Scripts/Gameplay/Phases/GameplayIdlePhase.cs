@@ -2,9 +2,9 @@ using Basket.Gameplay.Service;
 
 namespace Basket.Gameplay.Phases
 {
-    public class GameplayLoadPhase : GameplayBasePhase
+    public class GameplayIdlePhase : GameplayBasePhase
     {
-        public GameplayLoadPhase(GameplayStateMachine stateMachine) : base(stateMachine)
+        public GameplayIdlePhase(GameplayStateMachine stateMachine) : base(stateMachine)
         {
         }
 

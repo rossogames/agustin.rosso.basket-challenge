@@ -30,7 +30,7 @@ namespace Basket.Gameplay.Service
             _eventService.RegisterListener<GameplayEndedEvent>(this);
 
             StateMachine = new GameplayStateMachine(_data);
-            StateMachine.StartMachine(StateMachine.LoadPhase);
+            StateMachine.StartMachine(StateMachine.IdlePhase);
         }
 
         public void Dispose()

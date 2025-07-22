@@ -1,5 +1,4 @@
 using Basket.Gameplay.Service;
-using UnityEngine;
 
 namespace Basket.Gameplay.Phases
 {
@@ -24,7 +23,8 @@ namespace Basket.Gameplay.Phases
         public override void OnEventInvoked(GameplayEndedEvent eventArg)
         {
             base.OnEventInvoked(eventArg);
-            Debug.LogWarning($"xxxx");
+            StateMachine.TransitionTo(StateMachine.IdlePhase);
+            _sceneService.ChangeScene("MatchResult");
         }
     }
 }
