@@ -37,7 +37,7 @@ namespace Basket.General
 
         private void CompleteTransition()
         {
-            if (_nextState != null)
+            if (_nextState != null && _transitionInProgress)
             {
                 CurrentState = _nextState;
 

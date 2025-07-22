@@ -1,4 +1,5 @@
 using Rossoforge.Popups.PopupBase;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,14 +25,12 @@ namespace Rossoforge.Popups.Components
 
             _animator = GetComponent<Animator>();
             _canvasGroup = GetComponent<CanvasGroup>();
-            _canvasGroup.alpha = 0f;
+ 
             _view = GetComponent<IPopupView>();
             _eventSystem = FindObjectOfType<EventSystem>();
 
             State = PopupState.Inactive;
-
-            //await Awaitable.NextFrameAsync();
-            _canvasGroup.alpha = 1f;
+            _canvasGroup.alpha = 0f;
         }
 
         public void Open()
@@ -55,6 +54,7 @@ namespace Rossoforge.Popups.Components
 
         protected virtual void OnAnimationEventOpening()
         {
+            _canvasGroup.alpha = 1f;
             _view.OnOpening();
         }
         protected virtual void OnAnimationEventActivate()

@@ -22,5 +22,15 @@ namespace Basket.Gameplay.Service
         {
             StateMachine.StartMachine(StateMachine.CountdownPhase);
         }
+
+        public void Update()
+        {
+            StateMachine.Update();
+        }
+
+        public void EndGame()
+        {
+            StateMachine.TransitionTo(StateMachine.VictoryPhase);
+        }
     }
 }

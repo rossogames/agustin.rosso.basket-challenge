@@ -20,6 +20,10 @@ namespace Rossoforge.Popups.PopupBase
         {
             _popupController = GetComponent<PopupController>();
         }
+        protected virtual void OnDestroy()
+        {
+            Presenter.OnDestroy();
+        }
 
         public void SetData(IPopupData popupData) => Presenter.OnSetData((D)popupData);
         public void Close() => _popupController.Close();

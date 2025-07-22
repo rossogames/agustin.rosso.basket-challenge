@@ -49,5 +49,9 @@ namespace Rossoforge.Popups.PopupBase
             if (AllowCancel)
                 View.Close();
         }
+
+        public virtual void OnDestroy()
+        {
+        }
     }
 }
