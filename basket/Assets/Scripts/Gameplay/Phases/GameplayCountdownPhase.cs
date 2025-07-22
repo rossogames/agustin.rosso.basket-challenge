@@ -1,4 +1,5 @@
 using Basket.Gameplay.PhasesData;
+using Basket.Gameplay.Service;
 
 namespace Basket.Gameplay.Phases
 {
@@ -6,7 +7,7 @@ namespace Basket.Gameplay.Phases
     {
         GameplayCountdownPhaseData _data;
 
-        public GameplayCountdownPhase(GameplayCountdownPhaseData data)
+        public GameplayCountdownPhase(GameplayStateMachine stateMachine, GameplayCountdownPhaseData data) : base(stateMachine)
         {
             _data = data;
         }
@@ -14,14 +15,7 @@ namespace Basket.Gameplay.Phases
         public override void Enter()
         {
             base.Enter();
-        }
-        public override void Exit()
-        {
-            base.Exit();
-        }
-        public override void Update()
-        {
-            base.Update();
+            StateMachine.TransitionTo(StateMachine.AimPhase);
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Basket
 {
-    public class GameplayHandler : MonoBehaviour, IEventListener<GameplayEndedEvent>
+    public class GameplayHandler : MonoBehaviour, IEventListener<MatchEndedEvent>
     {
         [SerializeField]
         private PopupMatchResultView _popupMatchResult;
@@ -19,30 +19,30 @@ namespace Basket
             _eventService = ServiceLocator.Get<IEventService>();
             _gameplayService = ServiceLocator.Get<IGameplayService>();
 
-            _eventService.RegisterListener<GameplayEndedEvent>(this);
+            _eventService.RegisterListener<MatchEndedEvent>(this);
         }
 
         private void Start()
         {
-            _gameplayService.StartGame();
+            _eventService.Raise<GameplayLoadedEvent>();
         }
 
         private void OnDestroy()
         {
-            _eventService.UnregisterListener<GameplayEndedEvent>(this);
+            _eventService.UnregisterListener<MatchEndedEvent>(this);
         }
 
         private void LateUpdate()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _gameplayService.EndGame();
+                _eventService.Raise<MatchTimeEndedEvent>();
             }
 
             _gameplayService.Update();
         }
 
-        public void OnEventInvoked(GameplayEndedEvent eventArg)
+        public void OnEventInvoked(MatchEndedEvent eventArg)
         {
             _popupMatchResult.Open();
         }

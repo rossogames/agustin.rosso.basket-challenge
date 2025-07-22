@@ -5,17 +5,19 @@ namespace Basket.Gameplay.Service
 {
     public class GameplayStateMachine : StateMachine<GameplayBasePhase>
     {
+        public GameplayLoadPhase LoadPhase { get; private set; }
         public GameplayCountdownPhase CountdownPhase { get; private set; }
         public GameplayAimPhase AimPhase { get; private set; }
         public GameplayShootPhase ShootPhase { get; private set; }
-        public GameplayEndPhase VictoryPhase { get; private set; }
+        public GameplayMatchEndPhase MatchEndPhase { get; private set; }
 
         public GameplayStateMachine(GameplayStateMachineData data)
         {
-            CountdownPhase = new GameplayCountdownPhase(data.CountdownPhaseData);
-            AimPhase = new GameplayAimPhase();
-            ShootPhase = new GameplayShootPhase();
-            VictoryPhase = new GameplayEndPhase();
+            LoadPhase = new GameplayLoadPhase(this);
+            CountdownPhase = new GameplayCountdownPhase(this, data.CountdownPhaseData);
+            AimPhase = new GameplayAimPhase(this);
+            ShootPhase = new GameplayShootPhase(this);
+            MatchEndPhase = new GameplayMatchEndPhase(this);
         }
     }
 }

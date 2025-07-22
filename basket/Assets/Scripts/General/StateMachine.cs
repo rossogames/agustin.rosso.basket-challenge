@@ -17,6 +17,9 @@ namespace Basket.General
         }
         public void TransitionTo(T nextState)
         {
+            if (_transitionInProgress)
+                return;
+
             if (nextState != null && !nextState.Equals(CurrentState))
             {
                 _transitionInProgress = true;
@@ -41,8 +44,10 @@ namespace Basket.General
             {
                 CurrentState = _nextState;
 
-                CurrentState.Enter();
                 _transitionInProgress = false;
+                _nextState = default;
+
+                CurrentState.Enter();
             }
         }
     }

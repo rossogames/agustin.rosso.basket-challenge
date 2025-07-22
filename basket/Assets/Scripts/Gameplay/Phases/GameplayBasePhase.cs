@@ -1,3 +1,4 @@
+using Basket.Gameplay.Service;
 using Basket.General;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
@@ -9,8 +10,11 @@ namespace Basket.Gameplay.Phases
     {
         protected readonly IEventService _eventService;
 
-        public GameplayBasePhase()
+        protected GameplayStateMachine StateMachine { get; private set; }
+
+        public GameplayBasePhase(GameplayStateMachine stateMachine)
         {
+            StateMachine = stateMachine;
             _eventService = ServiceLocator.Get<IEventService>();
         }
 
@@ -25,6 +29,18 @@ namespace Basket.Gameplay.Phases
         }
 
         public virtual void Update()
+        {
+        }
+
+        public virtual void OnEventInvoked(GameplayLoadedEvent eventArg)
+        { 
+        }
+
+        public virtual void OnEventInvoked(GameplayEndedEvent eventArg)
+        {
+        }
+
+        public virtual void OnEventInvoked(MatchTimeEndedEvent eventArg)
         {
         }
     }

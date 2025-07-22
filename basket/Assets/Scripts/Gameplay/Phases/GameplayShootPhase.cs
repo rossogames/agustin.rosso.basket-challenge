@@ -1,18 +1,11 @@
+using Basket.Gameplay.Service;
+
 namespace Basket.Gameplay.Phases
 {
     public class GameplayShootPhase : GameplayBasePhase
     {
-        public override void Enter()
+        public GameplayShootPhase(GameplayStateMachine stateMachine) : base(stateMachine)
         {
-            base.Enter();
-        }
-        public override void Exit()
-        {
-            base.Exit();
-        }
-        public override void Update()
-        {
-            base.Update();
         }
     }
 }
