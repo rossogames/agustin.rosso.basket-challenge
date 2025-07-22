@@ -30,7 +30,7 @@ namespace Basket.Boot
             ServiceLocator.Register<IGameplayService>(gameplayService);
             ServiceLocator.Initialize();
 
-            sceneService.ChangeScene("Game");
+            sceneService.ChangeScene("Main");
         }
 
     }
