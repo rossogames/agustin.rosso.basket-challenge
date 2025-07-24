@@ -1,5 +1,8 @@
 using Rossoforge.Core.Events;
 
-public class GameplayEndedEvent : IEvent
+namespace Basket.Gameplay.Events
 {
+    public class GameplayEndedEvent : IEvent
+    {
+    }
 }

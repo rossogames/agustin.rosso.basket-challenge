@@ -1,5 +1,8 @@
 using Rossoforge.Core.Events;
 
-public class MatchTimeEndedEvent : IEvent
+namespace Basket.Gameplay.Events
 {
+    public class MatchTimeEndedEvent : IEvent
+    {
+    }
 }

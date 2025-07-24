@@ -1,10 +1,11 @@
+using Basket.Gameplay.Events;
 using Basket.Gameplay.Popups.MatchResult;
 using Basket.Gameplay.Service;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
 
-namespace Basket
+namespace Basket.Gameplay.Components
 {
     public class GameplayHandler : MonoBehaviour, IEventListener<MatchEndedEvent>
     {
