@@ -1,3 +1,6 @@
+using Basket.Gameplay.Events;
+using Rossoforge.Core.Events;
+using Rossoforge.Services;
 using UnityEngine;
 
 namespace Basket.Gameplay.Components
@@ -7,11 +10,18 @@ namespace Basket.Gameplay.Components
         [SerializeField]
         private int targetIndex;
 
+        private IEventService _eventService;
+
+        private void Awake()
+        {
+            _eventService = ServiceLocator.Get<IEventService>();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Ball"))
             {
-                Debug.LogWarning($"test {targetIndex}");
+                _eventService.Raise(new TargetHitEvent(targetIndex));
             }
         }
     }

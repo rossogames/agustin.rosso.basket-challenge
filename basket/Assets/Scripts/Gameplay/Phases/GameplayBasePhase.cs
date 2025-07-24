@@ -38,13 +38,15 @@ namespace Basket.Gameplay.Phases
         public virtual void OnEventInvoked(GameplayLoadedEvent eventArg)
         { 
         }
-
         public virtual void OnEventInvoked(GameplayEndedEvent eventArg)
         {
         }
-
         public virtual void OnEventInvoked(MatchTimeEndedEvent eventArg)
         {
+        }
+        public virtual void OnEventInvoked(TargetHitEvent eventArg)
+        {
+            Debug.LogWarning($"test {eventArg.TriggerIndex}");
         }
     }
 }
