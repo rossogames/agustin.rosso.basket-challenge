@@ -4,7 +4,7 @@ namespace Basket.Gameplay.Events
 {
     public struct TargetHitEvent : IEvent
     {
-        public int TriggerIndex;
+        public readonly int TriggerIndex;
 
         public TargetHitEvent(int triggerIndex)
         {

@@ -40,6 +40,11 @@ namespace Basket.Gameplay.Components
                 _eventService.Raise<MatchTimeEndedEvent>();
             }
 
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                _eventService.Raise(new AimCompletedEvent(ShootingTarget.Basket, 1f));
+            }
+
             _gameplayService.Update();
         }
 

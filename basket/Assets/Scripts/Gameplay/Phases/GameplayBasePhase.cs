@@ -36,9 +36,9 @@ namespace Basket.Gameplay.Phases
         }
 
         public virtual void OnEventInvoked(GameplayLoadedEvent eventArg)
-        { 
+        {
         }
-        public virtual void OnEventInvoked(GameplayEndedEvent eventArg)
+        public virtual void OnEventInvoked(AimCompletedEvent eventArg)
         {
         }
         public virtual void OnEventInvoked(MatchTimeEndedEvent eventArg)
@@ -47,6 +47,9 @@ namespace Basket.Gameplay.Phases
         public virtual void OnEventInvoked(TargetHitEvent eventArg)
         {
             Debug.LogWarning($"test {eventArg.TriggerIndex}");
+        }
+        public virtual void OnEventInvoked(GameplayEndedEvent eventArg)
+        {
         }
     }
 }
