@@ -5,7 +5,7 @@ namespace Basket.Gameplay.Phases
 {
     public class GameplayCountdownPhase : GameplayBasePhase
     {
-        GameplayCountdownPhaseData _data;
+        private readonly GameplayCountdownPhaseData _data;
 
         public GameplayCountdownPhase(GameplayStateMachine stateMachine, GameplayCountdownPhaseData data) : base(stateMachine)
         {

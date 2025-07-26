@@ -8,5 +8,8 @@ namespace Basket.Gameplay.Service
     {
         [field: SerializeField]
         public GameplayCountdownPhaseData CountdownPhaseData { get; private set; }
+
+        [field: SerializeField]
+        public GameplayAimPhaseData AimPhaseData { get; private set; }
     }
 }

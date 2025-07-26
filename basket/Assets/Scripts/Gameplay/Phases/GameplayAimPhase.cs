@@ -1,4 +1,5 @@
 using Basket.Gameplay.Events;
+using Basket.Gameplay.PhasesData;
 using Basket.Gameplay.Service;
 using UnityEngine;
 
@@ -6,8 +7,11 @@ namespace Basket.Gameplay.Phases
 {
     public class GameplayAimPhase : GameplayBasePhase
     {
-        public GameplayAimPhase(GameplayStateMachine stateMachine) : base(stateMachine)
+        private readonly GameplayAimPhaseData _data;
+
+        public GameplayAimPhase(GameplayStateMachine stateMachine, GameplayAimPhaseData data) : base(stateMachine)
         {
+            _data = data;
         }
 
         public override void OnEventInvoked(AimCompletedEvent eventArg)
@@ -21,10 +25,12 @@ namespace Basket.Gameplay.Phases
             StateMachine.TransitionTo(StateMachine.MatchEndPhase);
         }
 
-        private void ThrowBall(ShootingTarget target, float accuracy)
+        private void ThrowBall(ShootingTarget shootingTarget, float accuracy)
         {
-            var targetPosition = new Vector3(-11.4f, 2.5f, 0); 
-            _eventService.Raise(new ThrowBallEvent(targetPosition, 60));
+            var target = _data.Targets[0];
+            _eventService.Raise(new ThrowBallEvent(target.TargetPosition, target.ThrowAngle));
+            // TODO: agregar position inicial
+            // TODO: posicion de camara
         }
     }
 }

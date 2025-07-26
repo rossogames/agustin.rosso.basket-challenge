@@ -28,7 +28,7 @@ namespace Basket.Gameplay.Components
 
         public void OnEventInvoked(ThrowBallEvent eventArg)
         {
-            ShootBall(_rigidbody, transform.position, eventArg.TargetPosition, eventArg.Angle);
+            ThrowBall(_rigidbody, transform.position, eventArg.TargetPosition, eventArg.Angle);
         }
 
         private void ResetState()
@@ -37,7 +37,7 @@ namespace Basket.Gameplay.Components
             _rigidbody.velocity = Vector3.zero;
         }
 
-        private void ShootBall(Rigidbody rb, Vector3 startPos, Vector3 targetPos, float angleDeg)
+        private void ThrowBall(Rigidbody rb, Vector3 startPos, Vector3 targetPos, float angleDeg)
         {
             float gravity = Mathf.Abs(Physics.gravity.y);
             Vector3 velocity = CalculateLaunchVelocity(startPos, targetPos, angleDeg, gravity);
