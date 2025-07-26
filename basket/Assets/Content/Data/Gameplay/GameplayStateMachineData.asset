@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CountdownPhaseData>k__BackingField: {fileID: 11400000, guid: a69e82060e331b34681d801ce251e68b, type: 2}
   <AimPhaseData>k__BackingField: {fileID: 11400000, guid: ac3fb29c5033f6e4a91c3f68249fdbf1, type: 2}
+  <ShootPhaseData>k__BackingField: {fileID: 11400000, guid: 8a397b0162148a541814e2debeb60ce4, type: 2}

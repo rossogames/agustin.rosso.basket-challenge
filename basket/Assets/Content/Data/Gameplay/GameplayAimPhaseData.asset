@@ -14,7 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraOffSet: {x: 0, y: 0, z: 0}
   Targets:
-  - BallPosition: {x: -7.1, y: 1.5, z: 0}
+  - BallPosition: {x: 0, y: 1.5, z: 1.35}
+    BasketTarget:
+      TargetPosition: {x: 0, y: 2.55, z: 5.35}
+      ThrowAngle: 60
+    BackboardTarget:
+      TargetPosition: {x: 0, y: 2.85, z: 5.65}
+      ThrowAngle: 50
+  - BallPosition: {x: 0, y: 1.5, z: 1.35}
+    BasketTarget:
+      TargetPosition: {x: 0, y: 2.55, z: 5.35}
+      ThrowAngle: 60
+    BackboardTarget:
+      TargetPosition: {x: 0, y: 2.85, z: 5.65}
+      ThrowAngle: 50
+  - BallPosition: {x: 0, y: 1.5, z: 1.35}
     BasketTarget:
       TargetPosition: {x: 0, y: 2.55, z: 5.35}
       ThrowAngle: 60

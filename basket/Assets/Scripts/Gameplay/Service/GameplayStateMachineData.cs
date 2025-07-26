@@ -11,5 +11,8 @@ namespace Basket.Gameplay.Service
 
         [field: SerializeField]
         public GameplayAimPhaseData AimPhaseData { get; private set; }
+
+        [field: SerializeField]
+        public GameplayShootPhaseData ShootPhaseData { get; private set; }
     }
 }

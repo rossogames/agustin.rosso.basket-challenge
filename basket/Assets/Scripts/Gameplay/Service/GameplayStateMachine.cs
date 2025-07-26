@@ -16,7 +16,7 @@ namespace Basket.Gameplay.Service
             IdlePhase = new GameplayIdlePhase(this);
             CountdownPhase = new GameplayCountdownPhase(this, data.CountdownPhaseData);
             AimPhase = new GameplayAimPhase(this, data.AimPhaseData);
-            ShootPhase = new GameplayShootPhase(this);
+            ShootPhase = new GameplayShootPhase(this, data.ShootPhaseData);
             MatchEndPhase = new GameplayMatchEndPhase(this);
         }
     }

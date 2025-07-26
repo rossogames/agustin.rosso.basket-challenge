@@ -1,3 +1,4 @@
+using Basket.Gameplay.Events;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
@@ -5,7 +6,9 @@ using UnityEngine;
 namespace Basket.Gameplay.Components
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Ball : MonoBehaviour, IEventListener<ThrowBallEvent>
+    public class Ball : MonoBehaviour,
+        IEventListener<AimStartedEvent>,
+        IEventListener<ThrowBallEvent>
     {
         private IEventService _eventService;
         private Rigidbody _rigidbody;
@@ -18,23 +21,29 @@ namespace Basket.Gameplay.Components
 
         private void OnEnable()
         {
+            _eventService.RegisterListener<AimStartedEvent>(this);
             _eventService.RegisterListener<ThrowBallEvent>(this);
-            ResetState();
         }
         private void OnDisable()
         {
+            _eventService.UnregisterListener<AimStartedEvent>(this);
             _eventService.UnregisterListener<ThrowBallEvent>(this);
         }
 
+        public void OnEventInvoked(AimStartedEvent eventArg)
+        {
+            ResetState(eventArg.BallPosition);
+        }
         public void OnEventInvoked(ThrowBallEvent eventArg)
         {
             ThrowBall(_rigidbody, transform.position, eventArg.TargetPosition, eventArg.Angle);
         }
 
-        private void ResetState()
+        private void ResetState(Vector3 position)
         {
             _rigidbody.isKinematic = true;
             _rigidbody.velocity = Vector3.zero;
+            transform.position = position;
         }
 
         private void ThrowBall(Rigidbody rb, Vector3 startPos, Vector3 targetPos, float angleDeg)

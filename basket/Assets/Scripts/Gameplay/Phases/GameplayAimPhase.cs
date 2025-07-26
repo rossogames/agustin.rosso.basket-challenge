@@ -8,7 +8,7 @@ namespace Basket.Gameplay.Phases
     public class GameplayAimPhase : GameplayBasePhase
     {
         private readonly GameplayAimPhaseData _data;
-        private int _positionIndex = 0;
+        private AimSetting _currentAimSetting;
 
         public GameplayAimPhase(GameplayStateMachine stateMachine, GameplayAimPhaseData data) : base(stateMachine)
         {
@@ -18,13 +18,14 @@ namespace Basket.Gameplay.Phases
         public override void Enter()
         {
             base.Enter();
-            _positionIndex = 0; // aplicar random
+            StartAim();
         }
 
         public override void OnEventInvoked(AimCompletedEvent eventArg)
         {
             base.OnEventInvoked(eventArg);
             ThrowBall(eventArg.Target, eventArg.AccuracyX, eventArg.AccuracyZ);
+            StateMachine.TransitionTo(StateMachine.ShootPhase);
         }
         public override void OnEventInvoked(MatchTimeEndedEvent eventArg)
         {
@@ -32,10 +33,19 @@ namespace Basket.Gameplay.Phases
             StateMachine.TransitionTo(StateMachine.MatchEndPhase);
         }
 
+        private void StartAim()
+        {
+            var positionIndex = 0; // aplicar random
+            _currentAimSetting = _data.Targets[positionIndex];
+
+            _eventService.Raise(new AimStartedEvent(_currentAimSetting.BallPosition));
+        }
+
         private void ThrowBall(ShootingTarget shootingTarget, float accuracyX, float accuracyZ)
         {
-            var aimSetting = _data.Targets[_positionIndex];
-            var target = shootingTarget == ShootingTarget.Basket ? aimSetting.BasketTarget : aimSetting.BackboardTarget;
+            var target = shootingTarget == ShootingTarget.Basket ? 
+                _currentAimSetting.BasketTarget : 
+                _currentAimSetting.BackboardTarget;
 
             var targetPosition = new Vector3(
                 target.TargetPosition.x * accuracyX,
@@ -44,8 +54,6 @@ namespace Basket.Gameplay.Phases
             );
 
             _eventService.Raise(new ThrowBallEvent(targetPosition, target.ThrowAngle));
-            // TODO: agregar position inicial
-            // TODO: posicion de camara
         }
     }
 }
