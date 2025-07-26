@@ -4,8 +4,7 @@ using UnityEngine;
 namespace Basket.Main
 {
     public class MainView : MonoBehaviour,
-        IButtonClickListener<MainButtonPlay>,
-        IButtonClickListener<MainButtonExit>
+        IButtonClickListener<MainButtonPlay>
     {
         public MainPresenter _presenter;
 
@@ -17,11 +16,6 @@ namespace Basket.Main
         public void OnButtonClickInvoked(MainButtonPlay eventArg)
         {
             _presenter.StartGame();
-        }
-
-        public void OnButtonClickInvoked(MainButtonExit eventArg)
-        {
-            _presenter.ExitGame();
         }
     }
 }

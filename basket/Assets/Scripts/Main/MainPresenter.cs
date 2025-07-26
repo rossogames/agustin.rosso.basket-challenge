@@ -17,14 +17,5 @@ namespace Basket.Main
         {
             _sceneService.ChangeScene("Gameplay");
         }
-
-        public void ExitGame()
-        {
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
     }
 }
