@@ -7,6 +7,7 @@ namespace Basket.Gameplay.PhasesData
     {
         public Vector3 CameraOffSet;
 
+        public float AimUiHeight;
         public AimSetting[] Targets;
     }
 }

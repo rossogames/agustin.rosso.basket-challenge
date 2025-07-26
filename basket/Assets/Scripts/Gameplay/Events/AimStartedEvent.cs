@@ -1,15 +1,17 @@
+using Basket.Gameplay.PhasesData;
 using Rossoforge.Core.Events;
-using UnityEngine;
 
 namespace Basket.Gameplay.Events
 {
     public struct AimStartedEvent : IEvent
     {
-        public readonly Vector3 BallPosition;
+        public readonly float AimUiHeight;
+        public readonly AimSetting CurrentAimSetting;
 
-        public AimStartedEvent(Vector3 ballPosition)
+        public AimStartedEvent(float aimUiHeight, AimSetting currentAimSetting)
         {
-            BallPosition = ballPosition;
+            AimUiHeight = aimUiHeight;
+            CurrentAimSetting = currentAimSetting;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Basket.Gameplay.Phases
             var positionIndex = 0; // aplicar random
             _currentAimSetting = _data.Targets[positionIndex];
 
-            _eventService.Raise(new AimStartedEvent(_currentAimSetting.BallPosition));
+            _eventService.Raise(new AimStartedEvent(_data.AimUiHeight,_currentAimSetting));
         }
 
         private void ThrowBall(ShootingTarget shootingTarget, float accuracyX, float accuracyZ)

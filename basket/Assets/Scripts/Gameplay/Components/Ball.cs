@@ -32,7 +32,7 @@ namespace Basket.Gameplay.Components
 
         public void OnEventInvoked(AimStartedEvent eventArg)
         {
-            ResetState(eventArg.BallPosition);
+            ResetState(eventArg.CurrentAimSetting.BallPosition);
         }
         public void OnEventInvoked(ThrowBallEvent eventArg)
         {

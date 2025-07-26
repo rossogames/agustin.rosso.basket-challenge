@@ -13,25 +13,38 @@ MonoBehaviour:
   m_Name: GameplayAimPhaseData
   m_EditorClassIdentifier: 
   CameraOffSet: {x: 0, y: 0, z: 0}
+  AimUiHeight: 800
   Targets:
   - BallPosition: {x: 0, y: 1.5, z: 1.35}
     BasketTarget:
+      RelativeHeigh: 0.15
+      RelativePositionY: 0.5
       TargetPosition: {x: 0, y: 2.55, z: 5.35}
       ThrowAngle: 60
     BackboardTarget:
+      RelativeHeigh: 0.08
+      RelativePositionY: 0.8
       TargetPosition: {x: 0, y: 2.85, z: 5.65}
       ThrowAngle: 50
   - BallPosition: {x: 0, y: 1.5, z: 1.35}
     BasketTarget:
+      RelativeHeigh: 0
+      RelativePositionY: 0
       TargetPosition: {x: 0, y: 2.55, z: 5.35}
       ThrowAngle: 60
     BackboardTarget:
+      RelativeHeigh: 0
+      RelativePositionY: 0
       TargetPosition: {x: 0, y: 2.85, z: 5.65}
       ThrowAngle: 50
   - BallPosition: {x: 0, y: 1.5, z: 1.35}
     BasketTarget:
+      RelativeHeigh: 0
+      RelativePositionY: 0
       TargetPosition: {x: 0, y: 2.55, z: 5.35}
       ThrowAngle: 60
     BackboardTarget:
+      RelativeHeigh: 0
+      RelativePositionY: 0
       TargetPosition: {x: 0, y: 2.85, z: 5.65}
       ThrowAngle: 50
