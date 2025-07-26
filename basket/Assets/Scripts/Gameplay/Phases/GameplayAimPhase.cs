@@ -1,6 +1,7 @@
 using Basket.Gameplay.Events;
 using Basket.Gameplay.PhasesData;
 using Basket.Gameplay.Service;
+using System;
 using UnityEngine;
 
 namespace Basket.Gameplay.Phases
@@ -21,11 +22,24 @@ namespace Basket.Gameplay.Phases
             StartAim();
         }
 
-        public override void OnEventInvoked(AimCompletedEvent eventArg)
+        public override void OnEventInvoked(InputDragEndedEvent eventArg)
         {
             base.OnEventInvoked(eventArg);
-            ThrowBall(eventArg.Target, eventArg.AccuracyX, eventArg.AccuracyZ);
-            StateMachine.TransitionTo(StateMachine.ShootPhase);
+            Debug.LogWarning("SHOOT");
+
+            var distance = eventArg.EndScreenPos - eventArg.StartScreenPos;
+            var shootRelativePosition = distance / _data.AimUiHeight;
+
+            var targetBasketAccuracy = GetShootAcurracy(_currentAimSetting.BasketTarget, shootRelativePosition.y);
+            var targetBackboardAccuracy = GetShootAcurracy(_currentAimSetting.BackboardTarget, shootRelativePosition.y);
+
+            Debug.LogWarning($"Basket Accuracy: {targetBasketAccuracy}, Backboard Accuracy: {targetBackboardAccuracy}");
+
+            //if()
+            //var targetMin = _currentAimSetting.BasketTarget.RelativePositionY - 
+
+            //ThrowBall(eventArg.Target, eventArg.AccuracyX, eventArg.AccuracyZ);
+            //StateMachine.TransitionTo(StateMachine.ShootPhase);
         }
         public override void OnEventInvoked(MatchTimeEndedEvent eventArg)
         {
@@ -54,6 +68,20 @@ namespace Basket.Gameplay.Phases
             );
 
             _eventService.Raise(new ThrowBallEvent(targetPosition, target.ThrowAngle));
+        }
+
+        private float GetShootAcurracy(AimTarget target, float shootRelativePosition)
+        { 
+            float targetMinPosition = target.RelativePositionY - target.RelativeHeigh * 0.5f;
+            float targetMaxPosition = target.RelativePositionY + target.RelativeHeigh * 0.5f;
+
+            if (shootRelativePosition >= targetMinPosition && shootRelativePosition <= targetMaxPosition)
+                return 1;
+
+            if(shootRelativePosition < targetMinPosition)
+                return 1 - (targetMinPosition - shootRelativePosition);
+
+            return 1 - (targetMaxPosition - shootRelativePosition);
         }
     }
 }

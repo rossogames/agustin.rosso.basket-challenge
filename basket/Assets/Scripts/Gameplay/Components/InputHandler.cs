@@ -8,9 +8,9 @@ namespace Basket.Gameplay.Components
     {
         private IEventService _eventService;
 
-        private Vector2 startScreenPos;
-        private Vector2 endScreenPos;
-        private bool isDragging = false;
+        private Vector2 _startScreenPos;
+        private Vector2 _endScreenPos;
+        private bool _isDragging = false;
 
         private void Awake()
         {
@@ -24,25 +24,28 @@ namespace Basket.Gameplay.Components
             else
                 DragMouse();
 
-            if (isDragging)
-                _eventService.Raise(new InputDragEvent(startScreenPos, endScreenPos));
+            if (_isDragging)
+                _eventService.Raise(new InputDragEvent(_startScreenPos, _endScreenPos));
         }
 
         private void DragMouse()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                isDragging = true;
-                startScreenPos = Input.mousePosition;
-                endScreenPos = startScreenPos;
+                _isDragging = true;
+                _startScreenPos = Input.mousePosition;
+                _endScreenPos = _startScreenPos;
             }
-            else if (Input.GetMouseButton(0) && isDragging)
+            else if (Input.GetMouseButton(0) && _isDragging)
             {
-                endScreenPos = Input.mousePosition;
+                _endScreenPos = Input.mousePosition;
+                if(_endScreenPos.y < _startScreenPos.y)
+                    _endScreenPos.y = _startScreenPos.y;
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                isDragging = false;
+                _isDragging = false;
+                _eventService.Raise(new InputDragEndedEvent(_startScreenPos, _endScreenPos));
             }
         }
 
@@ -55,22 +58,25 @@ namespace Basket.Gameplay.Components
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:
-                        isDragging = true;
-                        startScreenPos = touch.position;
-                        endScreenPos = startScreenPos;
+                        _isDragging = true;
+                        _startScreenPos = touch.position;
+                        _endScreenPos = _startScreenPos;
                         break;
 
                     case TouchPhase.Moved:
                     case TouchPhase.Stationary:
-                        if (isDragging)
+                        if (_isDragging)
                         {
-                            endScreenPos = touch.position;
+                            _endScreenPos = touch.position;
+                            if (_endScreenPos.y < _startScreenPos.y)
+                                _endScreenPos.y = _startScreenPos.y;
                         }
                         break;
 
                     case TouchPhase.Ended:
                     case TouchPhase.Canceled:
-                        isDragging = false;
+                        _isDragging = false;
+                        _eventService.Raise(new InputDragEndedEvent(_startScreenPos, _endScreenPos));
                         break;
                 }
             }

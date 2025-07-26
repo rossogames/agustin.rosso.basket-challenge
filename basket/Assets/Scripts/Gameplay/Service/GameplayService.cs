@@ -8,7 +8,7 @@ namespace Basket.Gameplay.Service
 {
     public class GameplayService : IGameplayService, IInitializable, IDisposable,
         IEventListener<GameplayLoadedEvent>,
-        IEventListener<AimCompletedEvent>,
+        IEventListener<InputDragEndedEvent>,
         IEventListener<TargetHitEvent>,
         IEventListener<MatchTimeEndedEvent>,
         IEventListener<GameplayEndedEvent>
@@ -29,7 +29,7 @@ namespace Basket.Gameplay.Service
             _eventService = ServiceLocator.Get<IEventService>();
 
             _eventService.RegisterListener<GameplayLoadedEvent>(this);
-            _eventService.RegisterListener<AimCompletedEvent>(this);
+            _eventService.RegisterListener<InputDragEndedEvent>(this);
             _eventService.RegisterListener<TargetHitEvent>(this);
             _eventService.RegisterListener<MatchTimeEndedEvent>(this);
             _eventService.RegisterListener<GameplayEndedEvent>(this);
@@ -41,7 +41,7 @@ namespace Basket.Gameplay.Service
         public void Dispose()
         {
             _eventService.UnregisterListener<GameplayLoadedEvent>(this);
-            _eventService.UnregisterListener<AimCompletedEvent>(this);
+            _eventService.UnregisterListener<InputDragEndedEvent>(this);
             _eventService.UnregisterListener<TargetHitEvent>(this);
             _eventService.UnregisterListener<MatchTimeEndedEvent>(this);
             _eventService.UnregisterListener<GameplayEndedEvent>(this);
@@ -53,7 +53,7 @@ namespace Basket.Gameplay.Service
         }
 
         public void OnEventInvoked(GameplayLoadedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
-        public void OnEventInvoked(AimCompletedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
+        public void OnEventInvoked(InputDragEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(TargetHitEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(MatchTimeEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(GameplayEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
