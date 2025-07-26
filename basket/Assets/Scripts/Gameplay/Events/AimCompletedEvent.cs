@@ -5,12 +5,14 @@ namespace Basket.Gameplay.Events
     public struct AimCompletedEvent : IEvent
     {
         public readonly ShootingTarget Target;
-        public readonly float Accuracy;
+        public readonly float AccuracyX;
+        public readonly float AccuracyZ;
 
-        public AimCompletedEvent(ShootingTarget target, float accuracy)
+        public AimCompletedEvent(ShootingTarget target, float accuracyX, float accuracyZ)
         {
             Target = target;
-            Accuracy = accuracy;
+            AccuracyX = accuracyX;
+            AccuracyZ = accuracyZ;
         }
     }
 }
