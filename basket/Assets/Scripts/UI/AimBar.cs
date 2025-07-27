@@ -9,7 +9,8 @@ namespace Basket.UI
 {
     public class AimBar : MonoBehaviour,
         IEventListener<InputDragEvent>,
-        IEventListener<AimStartedEvent>
+        IEventListener<AimStartedEvent>,
+        IEventListener<ThrowBallEvent>
     {
         private IEventService _eventService;
         private RectTransform _rectTransform;
@@ -27,18 +28,19 @@ namespace Basket.UI
         {
             _eventService = ServiceLocator.Get<IEventService>();
             _rectTransform = GetComponent<RectTransform>();
-        }
 
-        private void OnEnable()
-        {
             _eventService.RegisterListener<InputDragEvent>(this);
             _eventService.RegisterListener<AimStartedEvent>(this);
+            _eventService.RegisterListener<ThrowBallEvent>(this);
+
+            gameObject.SetActive(false);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _eventService.UnregisterListener<InputDragEvent>(this);
             _eventService.UnregisterListener<AimStartedEvent>(this);
+            _eventService.UnregisterListener<ThrowBallEvent>(this);
         }
 
         public void OnEventInvoked(AimStartedEvent eventArg)
@@ -50,12 +52,20 @@ namespace Basket.UI
 
             InitializeTargetUI(_imageBasketTarget, eventArg.CurrentAimSetting.BasketTarget, eventArg.AimUiHeight);
             InitializeTargetUI(_imageBackboardTarget, eventArg.CurrentAimSetting.BackboardTarget, eventArg.AimUiHeight);
+            _imageFiller.fillAmount = 0f;
+            gameObject.SetActive(true);
+
         }
 
         public void OnEventInvoked(InputDragEvent eventArg)
         {
             var distance = eventArg.EndScreenPos - eventArg.StartScreenPos;
             _imageFiller.fillAmount = distance.y / _rectTransform.rect.height;
+        }
+
+        public void OnEventInvoked(ThrowBallEvent eventArg)
+        {
+            gameObject.SetActive(false);
         }
 
         private void InitializeTargetUI(RectTransform rectTransform, AimTarget aimTarget, float aimUiHeight)
