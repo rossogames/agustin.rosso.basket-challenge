@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Basket.Gameplay.Service
+namespace Basket.Gameplay.Score
 {
     public class ScoreService : IScoreService
     {

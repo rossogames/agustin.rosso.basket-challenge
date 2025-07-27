@@ -1,6 +1,6 @@
 using Rossoforge.Core.Services;
 
-namespace Basket.Gameplay.Service
+namespace Basket.Gameplay.Score
 {
     public interface IScoreService : IService
     {
