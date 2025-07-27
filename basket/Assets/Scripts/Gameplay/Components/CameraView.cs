@@ -33,17 +33,20 @@ namespace Basket.Gameplay.Components
 
         public void OnEventInvoked(AimStartedEvent eventArg)
         {
-            SetCameraAimRotation(eventArg.CurrentAimSetting, eventArg.CameraDistanceFromBall);
+            SetCameraOffset(eventArg.CurrentAimSetting, eventArg.CameraDistanceFromBall);
         }
 
-        private void SetCameraAimRotation(AimSetting aimSetting, float cameraDistanceFromBall)
+        private void SetCameraOffset(AimSetting aimSetting, float cameraDistanceFromBall)
         {
             var camera = Camera.main;
             var direction = (aimSetting.BallPosition - aimSetting.BasketTarget.TargetPosition);
             direction.y = 0;
             direction.Normalize();
 
-            _transposer.m_FollowOffset = cameraDistanceFromBall * direction;
+            var offSet = cameraDistanceFromBall * direction;
+            offSet.y = 1;
+
+            _transposer.m_FollowOffset = offSet;
         }
     }
 }
