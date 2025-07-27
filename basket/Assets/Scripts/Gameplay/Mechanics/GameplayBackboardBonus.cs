@@ -32,7 +32,7 @@ namespace Basket.Gameplay.Mechanics
                 return;
 
             _scoreService.AddModifier(_currentBackboardBonus);
-            _eventService.Raise(new ScoreModifierBackboardBonusAppliedEvent(_currentBackboardBonus));
+            _eventService.Raise(new ScoreModifierBackboardBonusAddedEvent(_currentBackboardBonus));
         }
 
         public void TryRemoveBackboardBonus()

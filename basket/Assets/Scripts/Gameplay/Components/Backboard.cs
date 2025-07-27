@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Basket.Gameplay.Components
 {
     public class Backboard : MonoBehaviour, 
-        IEventListener<ScoreModifierBackboardBonusAppliedEvent>,
+        IEventListener<ScoreModifierBackboardBonusAddedEvent>,
         IEventListener<ScoreModifierBackboardBonusRemovedEvent>
     {
         [SerializeField]
@@ -32,17 +32,17 @@ namespace Basket.Gameplay.Components
 
         private void OnEnable()
         {
-            _eventService.RegisterListener<ScoreModifierBackboardBonusAppliedEvent>(this);
+            _eventService.RegisterListener<ScoreModifierBackboardBonusAddedEvent>(this);
             _eventService.RegisterListener<ScoreModifierBackboardBonusRemovedEvent>(this);
         }
 
         private void OnDisable()
         {
-            _eventService.UnregisterListener<ScoreModifierBackboardBonusAppliedEvent>(this);
+            _eventService.UnregisterListener<ScoreModifierBackboardBonusAddedEvent>(this);
             _eventService.UnregisterListener<ScoreModifierBackboardBonusRemovedEvent>(this);
         }
 
-        public void OnEventInvoked(ScoreModifierBackboardBonusAppliedEvent eventArg)
+        public void OnEventInvoked(ScoreModifierBackboardBonusAddedEvent eventArg)
         {
             HighlightScore(eventArg.ScoreModifier.DisplayValue, _highlightMaterial);
         }

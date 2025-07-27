@@ -3,11 +3,11 @@ using Rossoforge.Core.Events;
 
 namespace Basket.Score.Events
 {
-    public struct ScoreModifierBackboardBonusAppliedEvent : IEvent
+    public struct ScoreModifierBackboardBonusAddedEvent : IEvent
     {
         public readonly ScoreModifierBackboardBonus ScoreModifier;
 
-        public ScoreModifierBackboardBonusAppliedEvent(ScoreModifierBackboardBonus scoreModifier)
+        public ScoreModifierBackboardBonusAddedEvent(ScoreModifierBackboardBonus scoreModifier)
         {
             ScoreModifier = scoreModifier;
         }
