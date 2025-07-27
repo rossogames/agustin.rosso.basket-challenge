@@ -15,11 +15,11 @@ namespace Basket.Gameplay.Service
     {
         private IEventService _eventService;
 
-        private GameplayStateMachineData _data;
+        private GameplayServiceData _data;
 
         public GameplayStateMachine StateMachine { get; private set; }
 
-        public GameplayService(GameplayStateMachineData data)
+        public GameplayService(GameplayServiceData data)
         {
             _data = data;
         }
@@ -34,7 +34,7 @@ namespace Basket.Gameplay.Service
             _eventService.RegisterListener<MatchTimeEndedEvent>(this);
             _eventService.RegisterListener<GameplayEndedEvent>(this);
 
-            StateMachine = new GameplayStateMachine(_data);
+            StateMachine = new GameplayStateMachine(_data.StateMachineData);
             StateMachine.StartMachine(StateMachine.IdlePhase);
         }
 

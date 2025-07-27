@@ -1,4 +1,5 @@
 using Basket.Score.Modifiers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Basket.Score.Service
@@ -8,7 +9,12 @@ namespace Basket.Score.Service
         private int _currentShootPoints;
         private int _totalPoints;
 
-        public ScoreModifier[] _modifiers;
+        public List<ScoreModifier> _modifiers;
+
+        public ScoreService()
+        {
+            _modifiers = new List<ScoreModifier>();
+        }
 
         public void SetCurrentShootPoints(int points)
         {
@@ -23,6 +29,16 @@ namespace Basket.Score.Service
 #if UNITY_EDITOR
             Debug.Log($"Points applied: {_currentShootPoints}. Total points: {_totalPoints}");
 #endif
+        }
+
+        public void AddModifier(ScoreModifier modifier)
+        {
+            _modifiers.Add(modifier);
+        }
+
+        public void RemoveModifier(ScoreModifier modifier)
+        {
+            _modifiers.Remove(modifier);
         }
 
         private int GetModifiedPoints()

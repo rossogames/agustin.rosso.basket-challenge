@@ -15,7 +15,7 @@ namespace Basket.Boot
         private SceneTransitionData _sceneTransitionData;
 
         [SerializeField]
-        private GameplayStateMachineData _gameplayStateMachineData;
+        private GameplayServiceData _gameplayData;
 
         private void Awake()
         {
@@ -24,7 +24,7 @@ namespace Basket.Boot
 
             var eventService = new EventService();
             var sceneService = new SceneService(eventService, _sceneTransitionData);
-            var gameplayService = new GameplayService(_gameplayStateMachineData);
+            var gameplayService = new GameplayService(_gameplayData);
             var scoreService = new ScoreService();
 
             ServiceLocator.Register<IEventService>(eventService);

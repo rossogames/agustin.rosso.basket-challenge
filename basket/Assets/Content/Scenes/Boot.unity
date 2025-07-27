@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneTransitionData: {fileID: 11400000, guid: bbf610a26ae3daa4d8a00cacfb6736dd, type: 2}
-  _gameplayStateMachineData: {fileID: 11400000, guid: 30281211bb70fd740b22dff96177a3c0, type: 2}
+  _gameplayData: {fileID: 11400000, guid: e8d8546863b310842b424a80b0c39e87, type: 2}
 --- !u!1 &1711521729
 GameObject:
   m_ObjectHideFlags: 0
