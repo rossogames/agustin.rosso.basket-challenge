@@ -1,11 +1,17 @@
+using Basket.Score.Events;
 using Basket.Score.Modifiers;
+using Rossoforge.Core.Events;
+using Rossoforge.Core.Services;
+using Rossoforge.Services;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Basket.Score.Service
 {
-    public class ScoreService : IScoreService
+    public class ScoreService : IScoreService, IInitializable
     {
+        private IEventService _eventService;
+
         private int _currentShootPoints;
         private bool _currentShootIsBackboard;
         private int _totalPoints;
@@ -14,6 +20,11 @@ namespace Basket.Score.Service
         public ScoreService()
         {
             _modifiers = new List<ScoreModifier>();
+        }
+
+        public void Initialize()
+        {
+            _eventService = ServiceLocator.Get<IEventService>();
         }
 
         public void SetCurrentShootPoints(int points, bool isBackboard)
@@ -45,14 +56,19 @@ namespace Basket.Score.Service
         private int GetModifiedPoints()
         {
             int modifiedPoints = _currentShootPoints;
-            if (_modifiers != null)
+            if (_modifiers == null)
+                return modifiedPoints;
+
+            var modifiersCopy = _modifiers.ToArray();
+            foreach (var modifier in modifiersCopy)
             {
-                foreach (var modifier in _modifiers)
+                if (modifier.ApplyMode == ScoreModifierApplyMode.Always || _currentShootIsBackboard)
                 {
-                    if (modifier.ApplyMode == ScoreModifierApplyMode.Always || _currentShootIsBackboard)
-                        modifiedPoints = modifier.ApplyModifier(modifiedPoints);
+                    modifiedPoints = modifier.ApplyModifier(modifiedPoints);
+                    _eventService.Raise(new ScoreModifierAppliedEvent(modifier));
                 }
             }
+
             return modifiedPoints;
         }
     }

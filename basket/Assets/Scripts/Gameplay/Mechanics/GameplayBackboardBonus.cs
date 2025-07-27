@@ -4,10 +4,12 @@ using Basket.Score.Modifiers;
 using Basket.Score.Service;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
+using System;
 
 namespace Basket.Gameplay.Mechanics
 {
-    public class GameplayBackboardBonus
+    public class GameplayBackboardBonus : IDisposable,
+        IEventListener<ScoreModifierAppliedEvent>
     {
         private IScoreService _scoreService;
         private IEventService _eventService;
@@ -23,6 +25,19 @@ namespace Basket.Gameplay.Mechanics
 
             _backboardBonusSettings = backboardBonusSettings;
             LoadTotalWeight();
+
+            _eventService.RegisterListener<ScoreModifierAppliedEvent>(this);
+        }
+
+        public void Dispose()
+        {
+            _eventService.UnregisterListener<ScoreModifierAppliedEvent>(this);
+        }
+
+        public void OnEventInvoked(ScoreModifierAppliedEvent eventArg)
+        {
+            if (eventArg.ScoreModifier.Equals(_currentBackboardBonus))
+                TryRemoveBackboardBonus();
         }
 
         public void TryAddBackboardBonus()

@@ -52,6 +52,8 @@ namespace Basket.Gameplay.Service
             _eventService.UnregisterListener<TargetHitEvent>(this);
             _eventService.UnregisterListener<MatchTimeEndedEvent>(this);
             _eventService.UnregisterListener<GameplayEndedEvent>(this);
+
+            _GameplayBackboardBonus.Dispose();
         }
 
         public void Update()
