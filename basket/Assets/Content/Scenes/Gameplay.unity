@@ -264,6 +264,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea613c90e7a52c4a87464aff5e95072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &414430682 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2906109216903729157, guid: db3980089cc2350439fe840303cc9f91, type: 3}
+  m_PrefabInstance: {fileID: 816193141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &495073782
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +808,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 4874126678125670354, guid: 3ca937bc21fe4d94b821a57621062ce9, type: 3}
+    - target: {fileID: 2906109216903729157, guid: db3980089cc2350439fe840303cc9f91, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -8274133419916619345, guid: 3ca937bc21fe4d94b821a57621062ce9, type: 3}
     - target: {fileID: 4380272518814904192, guid: db3980089cc2350439fe840303cc9f91, type: 3}
       propertyPath: m_Name
       value: Backboard
@@ -918,6 +927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointsLabel: {fileID: 495073784}
+  _backboardMeshRenderer: {fileID: 414430682}
+  _highlightMaterial: {fileID: 2100000, guid: 8af0c6f669ed18f47aa71cac1957bc4d, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
