@@ -6,6 +6,9 @@ namespace Basket.Gameplay.Service
     public class GameplayServiceData : ScriptableObject
     {
         [field: SerializeField]
-        public GameplayStateMachineData StateMachineData;
+        public GameplayStateMachineData StateMachineData { get; private set; }
+
+        [field: SerializeField]
+        public BackboardBonusSettings BackboardBonus { get; private set; }
     }
 }
