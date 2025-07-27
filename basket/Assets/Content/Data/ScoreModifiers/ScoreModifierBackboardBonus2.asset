@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee37e2dcb0921e4cb62a6c1ca434ebe, type: 3}
   m_Name: ScoreModifierBackboardBonus2
   m_EditorClassIdentifier: 
+  <ApplyMode>k__BackingField: 1
   <Points>k__BackingField: 2
   <RandomWeight>k__BackingField: 1

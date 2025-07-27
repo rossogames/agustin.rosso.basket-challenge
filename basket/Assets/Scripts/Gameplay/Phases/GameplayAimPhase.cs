@@ -54,15 +54,16 @@ namespace Basket.Gameplay.Phases
             var missingOffSet = Vector3.zero;
             ShootingTarget shootingTarget;
 
-            if (Math.Abs(targetBasketAccuracy - 1f) < Math.Abs(targetBackboardAccuracy - 1f))
-            {
-                shootingTarget = ShootingTarget.Basket;
-                missingOffSet = GetMissOffset(targetBasketAccuracy);
-            }
-            else
+            bool isBackboardShoot = Math.Abs(targetBackboardAccuracy - 1f) < Math.Abs(targetBasketAccuracy - 1f);
+            if (isBackboardShoot)
             {
                 shootingTarget = ShootingTarget.Backboard;
                 missingOffSet = GetMissOffset(targetBackboardAccuracy);
+            }
+            else
+            {
+                shootingTarget = ShootingTarget.Basket;
+                missingOffSet = GetMissOffset(targetBasketAccuracy);
             }
 
             ThrowBall(shootingTarget, missingOffSet);
@@ -71,7 +72,7 @@ namespace Basket.Gameplay.Phases
                 _data.PerfectShotScore : 
                 _data.DefaultShotScore;
 
-            _scoreService.SetCurrentShootPoints(score);
+            _scoreService.SetCurrentShootPoints(score, isBackboardShoot);
          }
 
         private void ThrowBall(ShootingTarget shootingTarget, Vector3 missOffset)

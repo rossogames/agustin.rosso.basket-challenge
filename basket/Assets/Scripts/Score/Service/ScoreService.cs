@@ -7,8 +7,8 @@ namespace Basket.Score.Service
     public class ScoreService : IScoreService
     {
         private int _currentShootPoints;
+        private bool _currentShootIsBackboard;
         private int _totalPoints;
-
         public List<ScoreModifier> _modifiers;
 
         public ScoreService()
@@ -16,9 +16,10 @@ namespace Basket.Score.Service
             _modifiers = new List<ScoreModifier>();
         }
 
-        public void SetCurrentShootPoints(int points)
+        public void SetCurrentShootPoints(int points, bool isBackboard)
         {
             _currentShootPoints = points;
+            _currentShootIsBackboard = isBackboard;
         }
 
         public void ApplyPoints()
@@ -47,7 +48,10 @@ namespace Basket.Score.Service
             if (_modifiers != null)
             {
                 foreach (var modifier in _modifiers)
-                    modifiedPoints = modifier.ApplyModifier(modifiedPoints);
+                {
+                    if (modifier.ApplyMode == ScoreModifierApplyMode.Always || _currentShootIsBackboard)
+                        modifiedPoints = modifier.ApplyModifier(modifiedPoints);
+                }
             }
             return modifiedPoints;
         }
