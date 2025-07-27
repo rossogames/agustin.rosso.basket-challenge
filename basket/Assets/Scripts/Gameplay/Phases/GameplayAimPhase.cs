@@ -39,7 +39,7 @@ namespace Basket.Gameplay.Phases
 
         private void StartAim()
         {
-            var positionIndex = 1;//UnityEngine.Random.Range(0, _data.Targets.Length);
+            var positionIndex = UnityEngine.Random.Range(0, _data.Targets.Length);
             _currentAimSetting = _data.Targets[positionIndex];
 
             _eventService.Raise(new AimStartedEvent(_data.AimUiHeight, _data.CameraDistanceFromBall, _currentAimSetting));
