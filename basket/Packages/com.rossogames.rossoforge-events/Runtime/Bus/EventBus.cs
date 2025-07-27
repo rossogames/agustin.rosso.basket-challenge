@@ -29,7 +29,6 @@ namespace Rossoforge.Events.Bus
         public void Raise(T value)
         {
 #if UNITY_EDITOR
-            Debug.Log($"Event Raised: {typeof(T).Name}");
             _busEditorInfo.Calls++;
 #endif
 

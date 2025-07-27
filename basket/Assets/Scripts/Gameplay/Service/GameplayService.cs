@@ -1,8 +1,10 @@
 using Basket.Gameplay.Events;
+using Basket.Gameplay.Mechanics;
 using Rossoforge.Core.Events;
 using Rossoforge.Core.Services;
 using Rossoforge.Services;
 using System;
+using UnityEngine;
 
 namespace Basket.Gameplay.Service
 {
@@ -15,7 +17,9 @@ namespace Basket.Gameplay.Service
     {
         private IEventService _eventService;
 
+
         private GameplayServiceData _data;
+        private GameplayBackboardBonus _GameplayBackboardBonus;
 
         public GameplayStateMachine StateMachine { get; private set; }
 
@@ -28,6 +32,7 @@ namespace Basket.Gameplay.Service
         {
             _eventService = ServiceLocator.Get<IEventService>();
 
+
             _eventService.RegisterListener<GameplayLoadedEvent>(this);
             _eventService.RegisterListener<InputDragEndedEvent>(this);
             _eventService.RegisterListener<TargetHitEvent>(this);
@@ -36,6 +41,8 @@ namespace Basket.Gameplay.Service
 
             StateMachine = new GameplayStateMachine(_data.StateMachineData);
             StateMachine.StartMachine(StateMachine.IdlePhase);
+
+            _GameplayBackboardBonus = new(_data.BackboardBonus);
         }
 
         public void Dispose()
@@ -50,6 +57,9 @@ namespace Basket.Gameplay.Service
         public void Update()
         {
             StateMachine.Update();
+
+            if (Input.GetKeyDown(KeyCode.B))
+                _GameplayBackboardBonus.TryAddBackboardBonus();
         }
 
         public void OnEventInvoked(GameplayLoadedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
@@ -57,5 +67,6 @@ namespace Basket.Gameplay.Service
         public void OnEventInvoked(TargetHitEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(MatchTimeEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(GameplayEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
+
     }
 }

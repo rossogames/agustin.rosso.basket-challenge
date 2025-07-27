@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ScoreModifierBackboardBonus2
   m_EditorClassIdentifier: 
   <Points>k__BackingField: 2
+  <RandomWeight>k__BackingField: 1

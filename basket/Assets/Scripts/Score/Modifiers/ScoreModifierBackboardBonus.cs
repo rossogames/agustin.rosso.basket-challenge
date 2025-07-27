@@ -6,7 +6,7 @@ namespace Basket.Score.Modifiers
     public class ScoreModifierBackboardBonus : ScoreModifier
     {
         [field: SerializeField]
-        public float Probability { get; private set; }
+        public float RandomWeight { get; private set; }
 
         public override int ApplyModifier(int currentPoints)
         {

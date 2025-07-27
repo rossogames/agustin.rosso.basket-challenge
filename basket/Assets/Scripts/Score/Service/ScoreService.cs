@@ -27,7 +27,7 @@ namespace Basket.Score.Service
             _totalPoints += modifiedPoints;
 
 #if UNITY_EDITOR
-            Debug.Log($"Points applied: {_currentShootPoints}. Total points: {_totalPoints}");
+            Debug.Log($"Points applied: {modifiedPoints}. Total points: {_totalPoints}");
 #endif
         }
 
