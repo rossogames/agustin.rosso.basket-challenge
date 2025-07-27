@@ -1,5 +1,6 @@
 using Basket.Gameplay.Events;
 using Basket.Gameplay.PhasesData;
+using Cinemachine;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
@@ -10,9 +11,15 @@ namespace Basket.Gameplay.Components
     {
         private IEventService _eventService;
 
+        [SerializeField]
+        private CinemachineVirtualCamera _virtualCamera;
+
+        private CinemachineTransposer _transposer;
+
         private void Awake()
         {
             _eventService = ServiceLocator.Get<IEventService>();
+            _transposer = _virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         }
 
         private void OnEnable()
@@ -26,28 +33,17 @@ namespace Basket.Gameplay.Components
 
         public void OnEventInvoked(AimStartedEvent eventArg)
         {
-            SetCamera(eventArg.CurrentAimSetting, eventArg.CameraDistanceFromBall);
+            SetCameraAimRotation(eventArg.CurrentAimSetting, eventArg.CameraDistanceFromBall);
         }
 
-        private void SetCamera(AimSetting aimSetting, float cameraDistanceFromBall)
+        private void SetCameraAimRotation(AimSetting aimSetting, float cameraDistanceFromBall)
         {
             var camera = Camera.main;
-            var direction = (aimSetting.BallPosition - aimSetting.BasketTarget.TargetPosition).normalized;
+            var direction = (aimSetting.BallPosition - aimSetting.BasketTarget.TargetPosition);
+            direction.y = 0;
+            direction.Normalize();
 
-            var cameraTargetPosition = aimSetting.BallPosition + cameraDistanceFromBall * direction;
-            var cameraTargetViewPosition = new Vector3(
-                aimSetting.BasketTarget.TargetPosition.x, 
-                camera.transform.position.y,
-                aimSetting.BasketTarget.TargetPosition.z
-            );
-
-            camera.transform.position = new Vector3(
-                    cameraTargetPosition.x,
-                    camera.transform.position.y,
-                    cameraTargetPosition.z
-                );
-            
-            camera.transform.LookAt(cameraTargetViewPosition);
+            _transposer.m_FollowOffset = cameraDistanceFromBall * direction;
         }
     }
 }
