@@ -12,8 +12,9 @@ namespace Basket.Gameplay.Mechanics
         private IScoreService _scoreService;
         private IEventService _eventService;
 
-        BackboardBonusSettings _backboardBonusSettings;
-        float _totalWeight = 0f;
+        private BackboardBonusSettings _backboardBonusSettings;
+        private ScoreModifierBackboardBonus _currentBackboardBonus;
+        private float _totalWeight = 0f;
 
         public GameplayBackboardBonus(BackboardBonusSettings backboardBonusSettings)
         {
@@ -26,10 +27,21 @@ namespace Basket.Gameplay.Mechanics
 
         public void TryAddBackboardBonus()
         {
-            var randomBonus = GetRandomBackboardBonus();
-            _scoreService.AddModifier(randomBonus);
+            _currentBackboardBonus = GetRandomBackboardBonus();
+            if (_currentBackboardBonus == null)
+                return;
 
-            _eventService.Raise(new ScoreModifierBackboardBonusAppliedEvent(randomBonus));
+            _scoreService.AddModifier(_currentBackboardBonus);
+            _eventService.Raise(new ScoreModifierBackboardBonusAppliedEvent(_currentBackboardBonus));
+        }
+
+        public void TryRemoveBackboardBonus()
+        {
+            if (_currentBackboardBonus == null)
+                return;
+
+            _scoreService.RemoveModifier(_currentBackboardBonus);
+            _eventService.Raise(new ScoreModifierBackboardBonusRemovedEvent(_currentBackboardBonus));
         }
 
         private ScoreModifierBackboardBonus GetRandomBackboardBonus()

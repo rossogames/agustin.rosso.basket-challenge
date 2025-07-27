@@ -58,8 +58,11 @@ namespace Basket.Gameplay.Service
         {
             StateMachine.Update();
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.A))
                 _GameplayBackboardBonus.TryAddBackboardBonus();
+
+            if (Input.GetKeyDown(KeyCode.B))
+                _GameplayBackboardBonus.TryRemoveBackboardBonus();
         }
 
         public void OnEventInvoked(GameplayLoadedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);

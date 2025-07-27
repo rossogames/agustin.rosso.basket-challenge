@@ -6,7 +6,9 @@ using UnityEngine;
 
 namespace Basket.Gameplay.Components
 {
-    public class Backboard : MonoBehaviour, IEventListener<ScoreModifierBackboardBonusAppliedEvent>
+    public class Backboard : MonoBehaviour, 
+        IEventListener<ScoreModifierBackboardBonusAppliedEvent>,
+        IEventListener<ScoreModifierBackboardBonusRemovedEvent>
     {
         [SerializeField]
         private TextMeshPro _pointsLabel;
@@ -31,16 +33,22 @@ namespace Basket.Gameplay.Components
         private void OnEnable()
         {
             _eventService.RegisterListener<ScoreModifierBackboardBonusAppliedEvent>(this);
+            _eventService.RegisterListener<ScoreModifierBackboardBonusRemovedEvent>(this);
         }
 
         private void OnDisable()
         {
             _eventService.UnregisterListener<ScoreModifierBackboardBonusAppliedEvent>(this);
+            _eventService.UnregisterListener<ScoreModifierBackboardBonusRemovedEvent>(this);
         }
 
         public void OnEventInvoked(ScoreModifierBackboardBonusAppliedEvent eventArg)
         {
             HighlightScore(eventArg.ScoreModifier.DisplayValue, _highlightMaterial);
+        }
+        public void OnEventInvoked(ScoreModifierBackboardBonusRemovedEvent eventArg)
+        {
+            HighlightScore(string.Empty, _defaultMaterial);
         }
 
         private void HighlightScore(string text, Material material)
