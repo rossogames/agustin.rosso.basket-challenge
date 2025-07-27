@@ -55,7 +55,7 @@ namespace Basket.UI
         public void OnEventInvoked(InputDragEvent eventArg)
         {
             var distance = eventArg.EndScreenPos - eventArg.StartScreenPos;
-            _imageFiller.fillAmount = distance.magnitude / _rectTransform.rect.height;
+            _imageFiller.fillAmount = distance.y / _rectTransform.rect.height;
         }
 
         private void InitializeTargetUI(RectTransform rectTransform, AimTarget aimTarget, float aimUiHeight)

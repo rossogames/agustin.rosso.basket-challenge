@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GameplayAimPhaseData
   m_EditorClassIdentifier: 
   CameraOffSet: {x: 0, y: 0, z: 0}
+  MissOffset: 4
   AimUiHeight: 800
   Targets:
   - BallPosition: {x: 0, y: 1.5, z: 1.35}
