@@ -11,6 +11,10 @@ namespace Basket.Gameplay.PhasesData
 
         public float AimUiHeight;
 
+        public int PerfectShotScore;
+
+        public int DefaultShotScore;
+
         public AimSetting[] Targets;
     }
 }

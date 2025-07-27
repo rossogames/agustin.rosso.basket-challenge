@@ -12,6 +12,7 @@ namespace Basket.Gameplay.Phases
     {
         protected readonly IEventService _eventService;
         protected readonly ISceneService _sceneService;
+        protected readonly IScoreService _scoreService;
         protected GameplayStateMachine StateMachine { get; private set; }
 
         public GameplayBasePhase(GameplayStateMachine stateMachine)
@@ -19,6 +20,7 @@ namespace Basket.Gameplay.Phases
             StateMachine = stateMachine;
             _eventService = ServiceLocator.Get<IEventService>();
             _sceneService = ServiceLocator.Get<ISceneService>();
+            _scoreService = ServiceLocator.Get<IScoreService>();
         }
 
         public virtual void Enter()

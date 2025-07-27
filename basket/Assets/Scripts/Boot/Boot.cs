@@ -24,10 +24,12 @@ namespace Basket.Boot
             var eventService = new EventService();
             var sceneService = new SceneService(eventService, _sceneTransitionData);
             var gameplayService = new GameplayService(_gameplayStateMachineData);
+            var scoreService = new ScoreService();
 
             ServiceLocator.Register<IEventService>(eventService);
             ServiceLocator.Register<ISceneService>(sceneService);
             ServiceLocator.Register<IGameplayService>(gameplayService);
+            ServiceLocator.Register<IScoreService>(scoreService);
             ServiceLocator.Initialize();
 
             sceneService.ChangeScene("Main");

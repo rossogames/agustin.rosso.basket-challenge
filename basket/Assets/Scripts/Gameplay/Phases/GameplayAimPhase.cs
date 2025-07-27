@@ -27,6 +27,8 @@ namespace Basket.Gameplay.Phases
             base.OnEventInvoked(eventArg);
             var distance = eventArg.EndScreenPos - eventArg.StartScreenPos;
             Shoot(distance.y);
+
+            StateMachine.TransitionTo(StateMachine.ShootPhase);
         }
 
         public override void OnEventInvoked(MatchTimeEndedEvent eventArg)
@@ -64,10 +66,13 @@ namespace Basket.Gameplay.Phases
             }
 
             ThrowBall(shootingTarget, missingOffSet);
-            StateMachine.TransitionTo(StateMachine.ShootPhase);
 
-            Debug.Log($"Basket Accuracy: {targetBasketAccuracy}, Backboard Accuracy: {targetBackboardAccuracy}");
-        }
+            int score = targetBasketAccuracy == 1 || targetBackboardAccuracy == 1f ? 
+                _data.PerfectShotScore : 
+                _data.DefaultShotScore;
+
+            _scoreService.SetCurrentShootPoints(score);
+         }
 
         private void ThrowBall(ShootingTarget shootingTarget, Vector3 missOffset)
         {

@@ -22,6 +22,16 @@ namespace Basket.Gameplay.Components
             if (other.CompareTag("Ball"))
             {
                 _eventService.Raise(new TargetHitEvent(targetIndex));
+
+                if (targetIndex == 1)
+                {
+                    Rigidbody rb = other.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.velocity *= 0.1f;
+                        rb.AddForce(Vector3.down * 2f, ForceMode.VelocityChange);
+                    }
+                }
             }
         }
     }
