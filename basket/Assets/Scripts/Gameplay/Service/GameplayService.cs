@@ -4,7 +4,6 @@ using Rossoforge.Core.Events;
 using Rossoforge.Core.Services;
 using Rossoforge.Services;
 using System;
-using UnityEngine;
 
 namespace Basket.Gameplay.Service
 {
@@ -37,6 +36,8 @@ namespace Basket.Gameplay.Service
 
             StateMachine = new GameplayStateMachine(_data.StateMachineData);
             StateMachine.StartMachine(StateMachine.IdlePhase);
+
+            new BackboardBonusInactiveTimer(_data).Start(); // when its completed will activate the backboard bonus
         }
 
         public void Dispose()
@@ -51,9 +52,6 @@ namespace Basket.Gameplay.Service
         public void Update()
         {
             StateMachine.Update();
-
-            if (Input.GetKeyDown(KeyCode.A))
-                new BackboardBonusActiveTimer(_data).Start();
         }
 
         public void OnEventInvoked(GameplayLoadedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);

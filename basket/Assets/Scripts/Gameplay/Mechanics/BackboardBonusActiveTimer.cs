@@ -36,13 +36,12 @@ namespace Basket.Gameplay.Mechanics
         {
             base.OnTimerEnd();
             TryRemoveBackboardBonus();
-            _eventService.UnregisterListener<ScoreModifierAppliedEvent>(this);
         }
 
         public void OnEventInvoked(ScoreModifierAppliedEvent eventArg)
         {
             if (eventArg.ScoreModifier.Equals(_currentBackboardBonus))
-                TryRemoveBackboardBonus();
+                OnTimerEnd();
         }
 
         private void TryAddBackboardBonus()
@@ -62,6 +61,9 @@ namespace Basket.Gameplay.Mechanics
 
             _scoreService.RemoveModifier(_currentBackboardBonus);
             _eventService.Raise(new ScoreModifierBackboardBonusRemovedEvent(_currentBackboardBonus));
+
+            _eventService.UnregisterListener<ScoreModifierAppliedEvent>(this);
+            new BackboardBonusInactiveTimer(_gameplayServiceData).Start(); // when its completed will activate the backboard bonus
         }
 
         private ScoreModifierBackboardBonus GetRandomBackboardBonus()

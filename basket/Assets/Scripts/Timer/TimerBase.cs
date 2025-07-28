@@ -39,6 +39,7 @@ namespace Basket.Timer
 
         protected virtual void OnTimerEnd()
         {
+            _isStarted = false;
             _timerService.UnregisterTimer(this);
         }
     }
