@@ -13,13 +13,10 @@ namespace Basket.Gameplay.Components
         private PopupMatchResultView _popupMatchResult;
 
         private IEventService _eventService;    
-        private IGameplayService _gameplayService;
 
         private void Awake()
         {
             _eventService = ServiceLocator.Get<IEventService>();
-            _gameplayService = ServiceLocator.Get<IGameplayService>();
-
             _eventService.RegisterListener<MatchEndedEvent>(this);
         }
 
@@ -31,11 +28,6 @@ namespace Basket.Gameplay.Components
         private void OnDestroy()
         {
             _eventService.UnregisterListener<MatchEndedEvent>(this);
-        }
-
-        private void LateUpdate()
-        {
-            _gameplayService.Update();
         }
 
         public void OnEventInvoked(MatchEndedEvent eventArg)

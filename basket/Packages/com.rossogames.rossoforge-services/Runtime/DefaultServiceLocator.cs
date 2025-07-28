@@ -8,6 +8,7 @@ namespace Rossoforge.Services
     public class DefaultServiceLocator : IServiceLocator
     {
         private readonly Dictionary<Type, IService> services = new();
+        private readonly List<IUpdatable> _updatableServices = new();
         private readonly object _lock = new();
 
         public void Initialize()
@@ -64,6 +65,8 @@ namespace Rossoforge.Services
 #if UNITY_EDITOR
                 Debug.Log($"Service {key.Name} registered");
 #endif
+                if (service is IUpdatable updatableService)
+                    _updatableServices.Add(updatableService);
             }
         }
 
@@ -86,6 +89,18 @@ namespace Rossoforge.Services
 #if UNITY_EDITOR
                 Debug.Log($"Service {key.Name} unregistered");
 #endif
+
+                if (service is IUpdatable updatableService)
+                    _updatableServices.Remove(updatableService);
+            }
+        }
+
+        public void Update()
+        {
+            lock (_lock)
+            {
+                foreach (var service in _updatableServices)
+                    service.Update();
             }
         }
     }
