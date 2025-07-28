@@ -8,10 +8,10 @@ namespace Basket.Gameplay.Service
     public class BackboardBonusSettings
     {
         [field: SerializeField]
-        public float TimeToApply { get; private set; }
+        public float TimeInactive { get; private set; }
 
         [field: SerializeField]
-        public float TimeToRemove { get; private set; }
+        public float TimeActive { get; private set; }
 
         [field: SerializeField]
         public ScoreModifierBackboardBonus[] Modifiers { get; private set; }

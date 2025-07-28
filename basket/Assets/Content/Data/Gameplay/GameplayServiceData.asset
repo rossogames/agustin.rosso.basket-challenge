@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <StateMachineData>k__BackingField: {fileID: 11400000, guid: 30281211bb70fd740b22dff96177a3c0, type: 2}
   <BackboardBonus>k__BackingField:
-    <TimeToApply>k__BackingField: 20
-    <TimeToRemove>k__BackingField: 10
+    <TimeInactive>k__BackingField: 2
+    <TimeActive>k__BackingField: 5
     <Modifiers>k__BackingField:
     - {fileID: 11400000, guid: d70ad77b5143bf847a19574f23015c66, type: 2}
     - {fileID: 11400000, guid: ff89b9d9d7f942648b7852a987270b6f, type: 2}

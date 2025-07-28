@@ -16,10 +16,7 @@ namespace Basket.Gameplay.Service
         IEventListener<GameplayEndedEvent>
     {
         private IEventService _eventService;
-
-
         private GameplayServiceData _data;
-        private GameplayBackboardBonus _GameplayBackboardBonus;
 
         public GameplayStateMachine StateMachine { get; private set; }
 
@@ -32,7 +29,6 @@ namespace Basket.Gameplay.Service
         {
             _eventService = ServiceLocator.Get<IEventService>();
 
-
             _eventService.RegisterListener<GameplayLoadedEvent>(this);
             _eventService.RegisterListener<InputDragEndedEvent>(this);
             _eventService.RegisterListener<TargetHitEvent>(this);
@@ -41,8 +37,6 @@ namespace Basket.Gameplay.Service
 
             StateMachine = new GameplayStateMachine(_data.StateMachineData);
             StateMachine.StartMachine(StateMachine.IdlePhase);
-
-            _GameplayBackboardBonus = new(_data.BackboardBonus);
         }
 
         public void Dispose()
@@ -52,8 +46,6 @@ namespace Basket.Gameplay.Service
             _eventService.UnregisterListener<TargetHitEvent>(this);
             _eventService.UnregisterListener<MatchTimeEndedEvent>(this);
             _eventService.UnregisterListener<GameplayEndedEvent>(this);
-
-            _GameplayBackboardBonus.Dispose();
         }
 
         public void Update()
@@ -61,10 +53,7 @@ namespace Basket.Gameplay.Service
             StateMachine.Update();
 
             if (Input.GetKeyDown(KeyCode.A))
-                _GameplayBackboardBonus.TryAddBackboardBonus();
-
-            if (Input.GetKeyDown(KeyCode.B))
-                _GameplayBackboardBonus.TryRemoveBackboardBonus();
+                new BackboardBonusActiveTimer(_data).Start();
         }
 
         public void OnEventInvoked(GameplayLoadedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);

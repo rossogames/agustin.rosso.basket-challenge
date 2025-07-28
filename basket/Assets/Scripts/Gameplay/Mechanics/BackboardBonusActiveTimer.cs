@@ -2,35 +2,40 @@ using Basket.Gameplay.Service;
 using Basket.Score.Events;
 using Basket.Score.Modifiers;
 using Basket.Score.Service;
+using Basket.Timer;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
-using System;
 
 namespace Basket.Gameplay.Mechanics
 {
-    public class GameplayBackboardBonus : IDisposable,
-        IEventListener<ScoreModifierAppliedEvent>
+    public class BackboardBonusActiveTimer : TimerBase, IEventListener<ScoreModifierAppliedEvent>
     {
-        private IScoreService _scoreService;
         private IEventService _eventService;
+        private IScoreService _scoreService;
 
-        private BackboardBonusSettings _backboardBonusSettings;
+        private GameplayServiceData _gameplayServiceData;
         private ScoreModifierBackboardBonus _currentBackboardBonus;
-        private float _totalWeight = 0f;
 
-        public GameplayBackboardBonus(BackboardBonusSettings backboardBonusSettings)
+        public BackboardBonusActiveTimer(GameplayServiceData gameplayServiceData) : base(gameplayServiceData.BackboardBonus.TimeActive)
         {
-            _scoreService = ServiceLocator.Get<IScoreService>();
-            _eventService = ServiceLocator.Get<IEventService>();
+            _gameplayServiceData = gameplayServiceData;
 
-            _backboardBonusSettings = backboardBonusSettings;
-            LoadTotalWeight();
+            _eventService = ServiceLocator.Get<IEventService>();
+            _scoreService = ServiceLocator.Get<IScoreService>();
 
             _eventService.RegisterListener<ScoreModifierAppliedEvent>(this);
         }
 
-        public void Dispose()
+        public override void Start()
         {
+            base.Start();
+            TryAddBackboardBonus();
+        }
+
+        protected override void OnTimerEnd()
+        {
+            base.OnTimerEnd();
+            TryRemoveBackboardBonus();
             _eventService.UnregisterListener<ScoreModifierAppliedEvent>(this);
         }
 
@@ -40,7 +45,7 @@ namespace Basket.Gameplay.Mechanics
                 TryRemoveBackboardBonus();
         }
 
-        public void TryAddBackboardBonus()
+        private void TryAddBackboardBonus()
         {
             _currentBackboardBonus = GetRandomBackboardBonus();
             if (_currentBackboardBonus == null)
@@ -50,7 +55,7 @@ namespace Basket.Gameplay.Mechanics
             _eventService.Raise(new ScoreModifierBackboardBonusAddedEvent(_currentBackboardBonus));
         }
 
-        public void TryRemoveBackboardBonus()
+        private void TryRemoveBackboardBonus()
         {
             if (_currentBackboardBonus == null)
                 return;
@@ -61,11 +66,12 @@ namespace Basket.Gameplay.Mechanics
 
         private ScoreModifierBackboardBonus GetRandomBackboardBonus()
         {
-            var randomValue = UnityEngine.Random.Range(0, _totalWeight);
+            float totalWeight = LoadTotalWeight();
+            var randomValue = UnityEngine.Random.Range(0, totalWeight);
 
             ScoreModifierBackboardBonus currentBonus = null;
             var currentWeight = 0f;
-            foreach (var modifier in _backboardBonusSettings.Modifiers)
+            foreach (var modifier in _gameplayServiceData.BackboardBonus.Modifiers)
             {
                 if (randomValue < currentWeight + modifier.RandomWeight)
                 {
@@ -80,11 +86,13 @@ namespace Basket.Gameplay.Mechanics
             return currentBonus;
         }
 
-        private void LoadTotalWeight()
+        private float LoadTotalWeight()
         {
-            _totalWeight = 0f;
-            foreach (var modifier in _backboardBonusSettings.Modifiers)
-                _totalWeight += modifier.RandomWeight;
+            float totalWeight = 0f;
+            foreach (var modifier in _gameplayServiceData.BackboardBonus.Modifiers)
+                totalWeight += modifier.RandomWeight;
+
+            return totalWeight;
         }
     }
 }
