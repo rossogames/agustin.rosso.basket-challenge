@@ -1,10 +1,10 @@
-using Basket.Gameplay.Service;
 using Basket.Score.Events;
 using Basket.Score.Modifiers;
 using Basket.Score.Service;
 using Basket.Timer;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
+using static Basket.Gameplay.PhasesData.GameplayStartPhaseData;
 
 namespace Basket.Gameplay.Mechanics
 {

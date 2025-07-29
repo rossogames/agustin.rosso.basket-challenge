@@ -1,5 +1,5 @@
-using Basket.Gameplay.Service;
 using Basket.Timer;
+using static Basket.Gameplay.PhasesData.GameplayStartPhaseData;
 
 namespace Basket.Gameplay.Mechanics
 {
