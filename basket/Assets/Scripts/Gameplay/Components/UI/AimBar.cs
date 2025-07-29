@@ -10,7 +10,8 @@ namespace Basket.Gameplay.Components.UI
     public class AimBar : MonoBehaviour,
         IEventListener<InputDragEvent>,
         IEventListener<AimStartedEvent>,
-        IEventListener<ThrowBallEvent>
+        IEventListener<ThrowBallEvent>,
+        IEventListener<MatchEndedEvent>
     {
         private IEventService _eventService;
         private RectTransform _rectTransform;
@@ -32,6 +33,7 @@ namespace Basket.Gameplay.Components.UI
             _eventService.RegisterListener<InputDragEvent>(this);
             _eventService.RegisterListener<AimStartedEvent>(this);
             _eventService.RegisterListener<ThrowBallEvent>(this);
+            _eventService.RegisterListener<MatchEndedEvent>(this);
 
             gameObject.SetActive(false);
         }
@@ -41,6 +43,7 @@ namespace Basket.Gameplay.Components.UI
             _eventService.UnregisterListener<InputDragEvent>(this);
             _eventService.UnregisterListener<AimStartedEvent>(this);
             _eventService.UnregisterListener<ThrowBallEvent>(this);
+            _eventService.UnregisterListener<MatchEndedEvent>(this);
         }
 
         public void OnEventInvoked(AimStartedEvent eventArg)
@@ -64,6 +67,11 @@ namespace Basket.Gameplay.Components.UI
         }
 
         public void OnEventInvoked(ThrowBallEvent eventArg)
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void OnEventInvoked(MatchEndedEvent eventArg)
         {
             gameObject.SetActive(false);
         }

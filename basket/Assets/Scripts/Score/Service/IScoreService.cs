@@ -9,5 +9,7 @@ namespace Basket.Score.Service
         void ApplyPoints();
         void AddModifier(ScoreModifierData modifier);
         void RemoveModifier(ScoreModifierData modifier);
+        void ResetScore();
+        int GetScore();
     }
 }

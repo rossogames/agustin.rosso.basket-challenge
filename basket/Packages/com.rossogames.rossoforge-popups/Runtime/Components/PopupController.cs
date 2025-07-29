@@ -40,6 +40,8 @@ namespace Rossoforge.Popups.Components
                 _eventSystem.SetSelectedGameObject(null);
                 State = PopupState.Opening;
                 gameObject.SetActive(true);
+                ((RectTransform)gameObject.transform).anchoredPosition = Vector3.zero;
+
                 _animator.SetTrigger(_animationClipHash_open);
             }
         }

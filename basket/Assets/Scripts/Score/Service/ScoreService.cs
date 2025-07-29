@@ -54,6 +54,16 @@ namespace Basket.Score.Service
             _modifiers.Remove(modifier);
         }
 
+        public void ResetScore()
+        {
+            _totalPoints = 0;
+        }
+
+        public int GetScore()
+        {
+            return _totalPoints;
+        }
+
         private int GetModifiedPoints()
         {
             int modifiedPoints = _currentShootPoints;

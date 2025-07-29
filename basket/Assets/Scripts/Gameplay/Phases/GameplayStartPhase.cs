@@ -16,12 +16,18 @@ namespace Basket.Gameplay.Phases
         public override void Enter()
         {
             base.Enter();
+
+            ResetScore();
             StartTimerNextBackboardBonus();
             StartTimerMatch();
 
             StateMachine.TransitionTo(StateMachine.AimPhase);
         }
 
+        private void ResetScore()
+        {
+            _scoreService.ResetScore();
+        }
         private void StartTimerNextBackboardBonus()
         {
             new BackboardBonusInactiveTimer(_data.BackboardBonus).Start();

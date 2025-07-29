@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopupMatchResult
       objectReference: {fileID: 0}
-    - target: {fileID: 1051220156766687146, guid: be777bf7d0644584389acc60051e3036, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -175,18 +171,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -216,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -1080
       objectReference: {fileID: 0}
     - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -233,18 +217,6 @@ PrefabInstance:
     - target: {fileID: 1681713735660818635, guid: be777bf7d0644584389acc60051e3036, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4768801947749768148, guid: be777bf7d0644584389acc60051e3036, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6866909752840700895, guid: be777bf7d0644584389acc60051e3036, type: 3}
-      propertyPath: m_text
-      value: MATCH RESULT
-      objectReference: {fileID: 0}
-    - target: {fileID: 7156455966081747154, guid: be777bf7d0644584389acc60051e3036, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be777bf7d0644584389acc60051e3036, type: 3}
@@ -1500,10 +1472,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1539104128}
     m_Modifications:
-    - target: {fileID: 8220704375485031793, guid: 531cbcf3f82d935419c79be0c5c10946, type: 3}
-      propertyPath: m_text
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8220704376776132688, guid: 531cbcf3f82d935419c79be0c5c10946, type: 3}
       propertyPath: m_Pivot.x
       value: 0
