@@ -36,8 +36,6 @@ namespace Basket.Gameplay.Service
 
             StateMachine = new GameplayStateMachine(_data.StateMachineData);
             StateMachine.StartMachine(StateMachine.IdlePhase);
-
-            new BackboardBonusInactiveTimer(_data).Start(); // when its completed will activate the backboard bonus
         }
 
         public void Dispose()

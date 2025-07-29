@@ -7,8 +7,5 @@ namespace Basket.Gameplay.Service
     {
         [field: SerializeField]
         public GameplayStateMachineData StateMachineData { get; private set; }
-
-        [field: SerializeField]
-        public BackboardBonusSettings BackboardBonus { get; private set; }
     }
 }

@@ -5,17 +5,17 @@ namespace Basket.Gameplay.Mechanics
 {
     public class BackboardBonusInactiveTimer : TimerBase
     {
-        private GameplayServiceData _gameplayServiceData;
+        private BackboardBonusSettings _backboardBonus;
 
-        public BackboardBonusInactiveTimer(GameplayServiceData gameplayServiceData) : base(gameplayServiceData.BackboardBonus.TimeInactive)
+        public BackboardBonusInactiveTimer(BackboardBonusSettings backboardBonus) : base(backboardBonus.TimeInactive)
         {
-            _gameplayServiceData = gameplayServiceData;
+            _backboardBonus = backboardBonus;
         }
 
         protected override void OnTimerEnd()
         {
             base.OnTimerEnd();
-            new BackboardBonusActiveTimer(_gameplayServiceData).Start();
+            new BackboardBonusActiveTimer(_backboardBonus).Start();
         }
     }
 }

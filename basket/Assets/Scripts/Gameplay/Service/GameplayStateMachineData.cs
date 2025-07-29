@@ -7,7 +7,7 @@ namespace Basket.Gameplay.Service
     public class GameplayStateMachineData : ScriptableObject
     {
         [field: SerializeField]
-        public GameplayCountdownPhaseData CountdownPhaseData { get; private set; }
+        public GameplayStartPhaseData StartPhaseData { get; private set; }
 
         [field: SerializeField]
         public GameplayAimPhaseData AimPhaseData { get; private set; }

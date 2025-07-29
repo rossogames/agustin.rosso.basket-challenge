@@ -13,12 +13,12 @@ namespace Basket.Gameplay.Mechanics
         private IEventService _eventService;
         private IScoreService _scoreService;
 
-        private GameplayServiceData _gameplayServiceData;
+        private BackboardBonusSettings _backboardBonus;
         private ScoreModifierBackboardBonus _currentBackboardBonus;
 
-        public BackboardBonusActiveTimer(GameplayServiceData gameplayServiceData) : base(gameplayServiceData.BackboardBonus.TimeActive)
+        public BackboardBonusActiveTimer(BackboardBonusSettings backboardBonus) : base(backboardBonus.TimeActive)
         {
-            _gameplayServiceData = gameplayServiceData;
+            _backboardBonus = backboardBonus;
 
             _eventService = ServiceLocator.Get<IEventService>();
             _scoreService = ServiceLocator.Get<IScoreService>();
@@ -63,7 +63,7 @@ namespace Basket.Gameplay.Mechanics
             _eventService.Raise(new ScoreModifierBackboardBonusRemovedEvent(_currentBackboardBonus));
 
             _eventService.UnregisterListener<ScoreModifierAppliedEvent>(this);
-            new BackboardBonusInactiveTimer(_gameplayServiceData).Start(); // when its completed will activate the backboard bonus
+            new BackboardBonusInactiveTimer(_backboardBonus).Start(); // when its completed will activate the backboard bonus
         }
 
         private ScoreModifierBackboardBonus GetRandomBackboardBonus()
@@ -73,7 +73,7 @@ namespace Basket.Gameplay.Mechanics
 
             ScoreModifierBackboardBonus currentBonus = null;
             var currentWeight = 0f;
-            foreach (var modifier in _gameplayServiceData.BackboardBonus.Modifiers)
+            foreach (var modifier in _backboardBonus.Modifiers)
             {
                 if (randomValue < currentWeight + modifier.RandomWeight)
                 {
@@ -91,7 +91,7 @@ namespace Basket.Gameplay.Mechanics
         private float LoadTotalWeight()
         {
             float totalWeight = 0f;
-            foreach (var modifier in _gameplayServiceData.BackboardBonus.Modifiers)
+            foreach (var modifier in _backboardBonus.Modifiers)
                 totalWeight += modifier.RandomWeight;
 
             return totalWeight;

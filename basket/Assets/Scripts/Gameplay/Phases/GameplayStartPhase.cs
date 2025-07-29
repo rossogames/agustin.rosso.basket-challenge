@@ -1,0 +1,23 @@
+using Basket.Gameplay.Mechanics;
+using Basket.Gameplay.PhasesData;
+using Basket.Gameplay.Service;
+
+namespace Basket.Gameplay.Phases
+{
+    public class GameplayStartPhase : GameplayBasePhase
+    {
+        private readonly GameplayStartPhaseData _data;
+
+        public GameplayStartPhase(GameplayStateMachine stateMachine, GameplayStartPhaseData data) : base(stateMachine)
+        {
+            _data = data;
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+            new BackboardBonusInactiveTimer(_data.BackboardBonus).Start(); // when its completed will activate the backboard bonus
+            StateMachine.TransitionTo(StateMachine.AimPhase);
+        }
+    }
+}

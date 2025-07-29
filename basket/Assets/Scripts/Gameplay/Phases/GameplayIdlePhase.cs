@@ -12,7 +12,7 @@ namespace Basket.Gameplay.Phases
         public override void OnEventInvoked(GameplayLoadedEvent eventArg)
         {
             base.OnEventInvoked(eventArg);
-            StateMachine.TransitionTo(StateMachine.CountdownPhase);
+            StateMachine.TransitionTo(StateMachine.StartPhase);
         }
     }
 }
