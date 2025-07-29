@@ -40,7 +40,7 @@ namespace Basket.Gameplay.Phases
         public virtual void OnEventInvoked(InputDragEndedEvent eventArg)
         {
         }
-        public virtual void OnEventInvoked(MatchTimeEndedEvent eventArg)
+        public virtual void OnEventInvoked(MatchTimerEndedEvent eventArg)
         {
         }
         public virtual void OnEventInvoked(TargetHitEvent eventArg)

@@ -17,13 +17,20 @@ namespace Basket.Gameplay.Phases
         {
             base.Enter();
             StartTimerNextBackboardBonus();
+            StartTimerMatch();
+
             StateMachine.TransitionTo(StateMachine.AimPhase);
         }
 
         private void StartTimerNextBackboardBonus()
-        { 
-            new BackboardBonusInactiveTimer(_data.BackboardBonus).Start(); 
+        {
+            new BackboardBonusInactiveTimer(_data.BackboardBonus).Start();
             // when its completed will activate the backboard bonus
+        }
+        private void StartTimerMatch()
+        {
+            var matchDuration = _data.MatchDuration;
+            new MatchTimer(matchDuration).Start();
         }
     }
 }

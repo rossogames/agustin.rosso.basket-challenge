@@ -5,38 +5,45 @@ namespace Basket.Timer
     public class TimerBase
     {
         private ITimerService _timerService;
-        private float _duration;
-        private float _currentTime;
         private bool _isStarted;
 
-        public bool IsPendingRemove { get; private set; }
+        protected float Duration { get; private set; }
+        protected float CurrentTime { get; private set; }
 
         public TimerBase(float duration)
         {
-            _duration = duration;
+            Duration = duration;
 
             _timerService = ServiceLocator.Get<ITimerService>();
             _timerService.RegisterTimer(this);
         }
 
-        public virtual void Start()
+        public void Start()
         {
             _isStarted = true;
+            OnStart();
         }
-
         public void Update()
         {
             if (!_isStarted)
                 return;
 
-            _currentTime += UnityEngine.Time.deltaTime;
-            if(_currentTime >= _duration)
+            CurrentTime += UnityEngine.Time.deltaTime;
+            if (CurrentTime >= Duration)
             {
                 OnTimerEnd();
-                _currentTime = 0f; 
+                CurrentTime = 0f;
             }
+
+            OnUpdate();
         }
 
+        protected virtual void OnStart()
+        {
+        }
+        protected virtual void OnUpdate()
+        {
+        }
         protected virtual void OnTimerEnd()
         {
             _isStarted = false;

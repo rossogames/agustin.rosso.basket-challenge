@@ -26,12 +26,11 @@ namespace Basket.Gameplay.Timers
             _eventService.RegisterListener<ScoreModifierAppliedEvent>(this);
         }
 
-        public override void Start()
+        protected override void OnStart()
         {
-            base.Start();
+            base.OnStart();
             TryAddBackboardBonus();
         }
-
         protected override void OnTimerEnd()
         {
             base.OnTimerEnd();

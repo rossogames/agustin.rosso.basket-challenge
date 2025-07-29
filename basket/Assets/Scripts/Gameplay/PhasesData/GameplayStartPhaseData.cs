@@ -8,6 +8,9 @@ namespace Basket.Gameplay.PhasesData
     public class GameplayStartPhaseData : ScriptableObject
     {
         [field: SerializeField]
+        public float MatchDuration { get; private set; }
+
+        [field: SerializeField]
         public BackboardBonusSettings BackboardBonus { get; private set; }
 
         [Serializable]
