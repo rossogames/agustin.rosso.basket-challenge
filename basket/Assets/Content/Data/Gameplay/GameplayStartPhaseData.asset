@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameplayStartPhaseData
   m_EditorClassIdentifier: 
   <MatchDuration>k__BackingField: 120
-  <AimDragDuration>k__BackingField: 2
+  <AimDragDuration>k__BackingField: 1
   <BackboardBonus>k__BackingField:
     <TimeInactive>k__BackingField: 20
     <TimeActive>k__BackingField: 10
