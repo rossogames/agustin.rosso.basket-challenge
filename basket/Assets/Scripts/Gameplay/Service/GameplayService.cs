@@ -34,7 +34,7 @@ namespace Basket.Gameplay.Service
             _eventService.RegisterListener<MatchTimerEndedEvent>(this);
             _eventService.RegisterListener<GameplayEndedEvent>(this);
 
-            StateMachine = new GameplayStateMachine(_data.StateMachineData);
+            StateMachine = new GameplayStateMachine(_data);
             StateMachine.StartMachine(StateMachine.IdlePhase);
         }
 

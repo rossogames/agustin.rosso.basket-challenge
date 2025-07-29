@@ -11,7 +11,7 @@ namespace Basket.Gameplay.Service
         public GameplayShootPhase ShootPhase { get; private set; }
         public GameplayMatchEndPhase MatchEndPhase { get; private set; }
 
-        public GameplayStateMachine(GameplayStateMachineData data)
+        public GameplayStateMachine(GameplayServiceData data)
         {
             IdlePhase = new GameplayIdlePhase(this);
             StartPhase = new GameplayStartPhase(this, data.StartPhaseData);
