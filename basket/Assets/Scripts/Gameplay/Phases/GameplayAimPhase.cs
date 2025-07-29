@@ -12,7 +12,6 @@ namespace Basket.Gameplay.Phases
         private readonly GameplayAimPhaseData _data;
         private AimSetting _currentAimSetting;
         private int _previousScore;
-        private bool _mustChangePlayerPosition;
         private int _currentPositionIndex;
 
         public GameplayAimPhase(GameplayStateMachine stateMachine, GameplayAimPhaseData data) : base(stateMachine)
@@ -23,11 +22,6 @@ namespace Basket.Gameplay.Phases
         public override void Enter()
         {
             base.Enter();
-            _currentPositionIndex = 0;
-
-            var currentScore = _scoreService.GetScore();
-            _mustChangePlayerPosition =  currentScore > _previousScore;
-            _previousScore = currentScore;
 
             StartAim();
         }
@@ -49,11 +43,17 @@ namespace Basket.Gameplay.Phases
 
         private void StartAim()
         {
-            if (_mustChangePlayerPosition)
+            var currentScore = _scoreService.GetScore();
+
+            if (currentScore != _previousScore)
+            {
                 SetNextPositionIndex();
+            }
 
             _currentAimSetting = _data.Targets[_currentPositionIndex];
             _eventService.Raise(new AimStartedEvent(_data.AimUiHeight, _data.CameraDistanceFromBall, _currentAimSetting));
+
+            _previousScore = currentScore;
         }
 
         private void SetNextPositionIndex()

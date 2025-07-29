@@ -32,9 +32,6 @@ namespace Basket.Gameplay.Service
             _eventService.RegisterListener<TargetHitEvent>(this);
             _eventService.RegisterListener<MatchTimerEndedEvent>(this);
             _eventService.RegisterListener<PopupMatchResultClosedEvent>(this);
-
-            StateMachine = new GameplayStateMachine(_data);
-            StateMachine.StartMachine(StateMachine.IdlePhase);
         }
 
         public void Dispose()
@@ -51,7 +48,13 @@ namespace Basket.Gameplay.Service
             StateMachine.Update();
         }
 
-        public void OnEventInvoked(GameplayLoadedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
+        public void OnEventInvoked(GameplayLoadedEvent eventArg)
+        {
+            StateMachine = new GameplayStateMachine(_data);
+            StateMachine.StartMachine(StateMachine.IdlePhase);
+
+            StateMachine.CurrentState?.OnEventInvoked(eventArg);
+        }
         public void OnEventInvoked(InputDragEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(TargetHitEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(MatchTimerEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
