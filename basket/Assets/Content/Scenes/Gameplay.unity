@@ -1071,6 +1071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb5d9532c268f843938cfe3854a5455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameplayStartPhaseData: {fileID: 11400000, guid: c683c267552be2c4bb621acdb6a75b2c, type: 2}
 --- !u!4 &1203936508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8917090152076234693, guid: aecc340c522cd2f49bbc53b599a4755a, type: 3}

@@ -45,7 +45,7 @@ namespace Basket.Gameplay.Service
 
         public void Update()
         {
-            StateMachine.Update();
+            StateMachine?.Update();
         }
 
         public void OnEventInvoked(GameplayLoadedEvent eventArg)

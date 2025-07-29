@@ -1,11 +1,16 @@
+using Basket.Gameplay.PhasesData;
+using Basket.Gameplay.Timers;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
 
 namespace Basket.Gameplay.Components.Environment
 {
-    public class InputHandler : MonoBehaviour
+    public class InputHandler : MonoBehaviour, IEventListener<InputDragCanceledEvent>
     {
+        [SerializeField]
+        private GameplayStartPhaseData _gameplayStartPhaseData;
+
         private IEventService _eventService;
 
         private Vector2 _startScreenPos;
@@ -17,8 +22,25 @@ namespace Basket.Gameplay.Components.Environment
             _eventService = ServiceLocator.Get<IEventService>();
         }
 
+        private void OnEnable()
+        {
+            _eventService.RegisterListener<InputDragCanceledEvent>(this);
+        }
+        private void OnDisable()
+        {
+            _eventService.UnregisterListener<InputDragCanceledEvent>(this);
+        }
+
+        public void OnEventInvoked(InputDragCanceledEvent eventArg)
+        {
+            _isDragging = false;
+            _eventService.Raise(new InputDragEndedEvent(_startScreenPos, _endScreenPos));
+        }
+
         private void Update()
         {
+            var _previousIsDragging = _isDragging;
+
             if (Input.touchCount > 0)
                 DragTouch();
             else
@@ -26,23 +48,31 @@ namespace Basket.Gameplay.Components.Environment
 
             if (_isDragging)
                 _eventService.Raise(new InputDragEvent(_startScreenPos, _endScreenPos));
+
+            if(!_previousIsDragging && _isDragging)
+                StartDragTimer();
         }
 
         private void DragMouse()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!_isDragging && Input.GetMouseButtonDown(0))
             {
                 _isDragging = true;
                 _startScreenPos = Input.mousePosition;
                 _endScreenPos = _startScreenPos;
+                return;
             }
-            else if (Input.GetMouseButton(0) && _isDragging)
+
+            if (Input.GetMouseButton(0) && _isDragging)
             {
-                _endScreenPos = Input.mousePosition;
-                if (_endScreenPos.y < _startScreenPos.y)
-                    _endScreenPos.y = _startScreenPos.y;
+                var newScreenPos = Input.mousePosition;
+                if (newScreenPos.y > _endScreenPos.y)
+                    _endScreenPos = newScreenPos;
+
+                return;
             }
-            else if (Input.GetMouseButtonUp(0))
+
+            if (Input.GetMouseButtonUp(0))
             {
                 _isDragging = false;
                 _eventService.Raise(new InputDragEndedEvent(_startScreenPos, _endScreenPos));
@@ -67,9 +97,9 @@ namespace Basket.Gameplay.Components.Environment
                     case TouchPhase.Stationary:
                         if (_isDragging)
                         {
-                            _endScreenPos = touch.position;
-                            if (_endScreenPos.y < _startScreenPos.y)
-                                _endScreenPos.y = _startScreenPos.y;
+                            var newScreenPos = touch.position;
+                            if (newScreenPos.y > _endScreenPos.y)
+                                _endScreenPos = newScreenPos;
                         }
                         break;
 
@@ -80,6 +110,11 @@ namespace Basket.Gameplay.Components.Environment
                         break;
                 }
             }
+        }
+
+        private void StartDragTimer()
+        {
+            new InputDragTimer(_gameplayStartPhaseData.AimDragDuration).Start();
         }
     }
 }

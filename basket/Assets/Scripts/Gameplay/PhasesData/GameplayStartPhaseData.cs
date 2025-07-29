@@ -11,6 +11,9 @@ namespace Basket.Gameplay.PhasesData
         public float MatchDuration { get; private set; }
 
         [field: SerializeField]
+        public float AimDragDuration { get; private set; }
+
+        [field: SerializeField]
         public BackboardBonusSettings BackboardBonus { get; private set; }
 
         [Serializable]
