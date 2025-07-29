@@ -38,6 +38,7 @@ namespace Basket.Score.Service
             var modifiedPoints = GetModifiedPoints();
             _totalPoints += modifiedPoints;
 
+            _eventService.Raise(new ScoreChangedEvent(modifiedPoints, _totalPoints));
 #if UNITY_EDITOR
             Debug.Log($"Points applied: {modifiedPoints}. Total points: {_totalPoints}");
 #endif

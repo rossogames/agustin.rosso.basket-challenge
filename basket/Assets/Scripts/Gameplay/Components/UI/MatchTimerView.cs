@@ -14,7 +14,7 @@ namespace Basket.Gameplay.Components.UI
         private IEventService _eventService;
 
         [SerializeField]
-        private TextMeshProUGUI _timerText;
+        private TextMeshProUGUI _timerLabel;
 
         private void Awake()
         {
@@ -52,7 +52,7 @@ namespace Basket.Gameplay.Components.UI
         private void SetTimerText(float time)
         {
             var timeSpan = System.TimeSpan.FromSeconds(time);
-            _timerText.text = timeSpan.ToString(@"m\:ss");
+            _timerLabel.text = timeSpan.ToString(@"m\:ss");
         }
     }
 }
