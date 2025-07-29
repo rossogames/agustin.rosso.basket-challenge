@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Basket.Score.Modifiers
 {
-    [CreateAssetMenu(fileName = nameof(ScoreModifierBackboardBonus), menuName = "Basket/Score/BackboardBonus")]
-    public class ScoreModifierBackboardBonus : ScoreModifier
+    [CreateAssetMenu(fileName = nameof(ScoreModifierBackboardBonusData), menuName = "Basket/Score/BackboardBonusData")]
+    public class ScoreModifierBackboardBonusData : ScoreModifierData
     {
         [field: SerializeField]
         public float RandomWeight { get; private set; }

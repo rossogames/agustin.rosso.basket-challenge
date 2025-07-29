@@ -14,7 +14,7 @@ namespace Basket.Gameplay.Mechanics
         private IScoreService _scoreService;
 
         private BackboardBonusSettings _backboardBonus;
-        private ScoreModifierBackboardBonus _currentBackboardBonus;
+        private ScoreModifierBackboardBonusData _currentBackboardBonus;
 
         public BackboardBonusActiveTimer(BackboardBonusSettings backboardBonus) : base(backboardBonus.TimeActive)
         {
@@ -63,15 +63,15 @@ namespace Basket.Gameplay.Mechanics
             _eventService.Raise(new ScoreModifierBackboardBonusRemovedEvent(_currentBackboardBonus));
 
             _eventService.UnregisterListener<ScoreModifierAppliedEvent>(this);
-            new BackboardBonusInactiveTimer(_backboardBonus).Start(); // when its completed will activate the backboard bonus
+            StartTimerWaitForNextBackboardBonus();
         }
 
-        private ScoreModifierBackboardBonus GetRandomBackboardBonus()
+        private ScoreModifierBackboardBonusData GetRandomBackboardBonus()
         {
             float totalWeight = LoadTotalWeight();
             var randomValue = UnityEngine.Random.Range(0, totalWeight);
 
-            ScoreModifierBackboardBonus currentBonus = null;
+            ScoreModifierBackboardBonusData currentBonus = null;
             var currentWeight = 0f;
             foreach (var modifier in _backboardBonus.Modifiers)
             {
@@ -95,6 +95,12 @@ namespace Basket.Gameplay.Mechanics
                 totalWeight += modifier.RandomWeight;
 
             return totalWeight;
+        }
+
+        private void StartTimerWaitForNextBackboardBonus()
+        {
+            new BackboardBonusInactiveTimer(_backboardBonus).Start();
+            // when its completed will activate the backboard bonus
         }
     }
 }

@@ -16,8 +16,14 @@ namespace Basket.Gameplay.Phases
         public override void Enter()
         {
             base.Enter();
-            new BackboardBonusInactiveTimer(_data.BackboardBonus).Start(); // when its completed will activate the backboard bonus
+            StartTimerNextBackboardBonus();
             StateMachine.TransitionTo(StateMachine.AimPhase);
+        }
+
+        private void StartTimerNextBackboardBonus()
+        { 
+            new BackboardBonusInactiveTimer(_data.BackboardBonus).Start(); 
+            // when its completed will activate the backboard bonus
         }
     }
 }

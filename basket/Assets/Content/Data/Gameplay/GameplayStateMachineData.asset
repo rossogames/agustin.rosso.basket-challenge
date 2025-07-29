@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3e5342e593e5f468ae2fcf046eadab, type: 3}
   m_Name: GameplayStateMachineData
   m_EditorClassIdentifier: 
-  <CountdownPhaseData>k__BackingField: {fileID: 11400000, guid: a69e82060e331b34681d801ce251e68b, type: 2}
+  <StartPhaseData>k__BackingField: {fileID: 11400000, guid: c683c267552be2c4bb621acdb6a75b2c, type: 2}
   <AimPhaseData>k__BackingField: {fileID: 11400000, guid: ac3fb29c5033f6e4a91c3f68249fdbf1, type: 2}
   <ShootPhaseData>k__BackingField: {fileID: 11400000, guid: 8a397b0162148a541814e2debeb60ce4, type: 2}

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ee37e2dcb0921e4cb62a6c1ca434ebe, type: 3}
-  m_Name: ScoreModifierBackboardBonus8
+  m_Script: {fileID: 11500000, guid: e906a0442c3a1894085696ad41cbad15, type: 3}
+  m_Name: ScoreModifierBackboardBonusData4
   m_EditorClassIdentifier: 
   <ApplyMode>k__BackingField: 1
-  <Points>k__BackingField: 8
-  <RandomWeight>k__BackingField: 0.2
+  <Points>k__BackingField: 4
+  <RandomWeight>k__BackingField: 0.5

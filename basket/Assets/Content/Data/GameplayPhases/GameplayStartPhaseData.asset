@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GameplayStartPhaseData
   m_EditorClassIdentifier: 
   <BackboardBonus>k__BackingField:
-    <TimeInactive>k__BackingField: 15
-    <TimeActive>k__BackingField: 7
+    <TimeInactive>k__BackingField: 2
+    <TimeActive>k__BackingField: 5
     <Modifiers>k__BackingField:
-    - {fileID: 11400000, guid: d70ad77b5143bf847a19574f23015c66, type: 2}
-    - {fileID: 11400000, guid: ff89b9d9d7f942648b7852a987270b6f, type: 2}
-    - {fileID: 11400000, guid: 30cee15311e208942a622d9d5d866b15, type: 2}
+    - {fileID: 11400000, guid: 335c4ee3f5486ed448d3d0f9c6729acc, type: 2}
+    - {fileID: 11400000, guid: ed128360f29bd104899d80727474cad8, type: 2}
+    - {fileID: 11400000, guid: 67c787b3ec19a4f4db6a1b11eac1c45c, type: 2}

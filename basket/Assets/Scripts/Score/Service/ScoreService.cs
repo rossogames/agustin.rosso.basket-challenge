@@ -15,11 +15,11 @@ namespace Basket.Score.Service
         private int _currentShootPoints;
         private bool _currentShootIsBackboard;
         private int _totalPoints;
-        public List<ScoreModifier> _modifiers;
+        public List<ScoreModifierData> _modifiers;
 
         public ScoreService()
         {
-            _modifiers = new List<ScoreModifier>();
+            _modifiers = new List<ScoreModifierData>();
         }
 
         public void Initialize()
@@ -43,12 +43,12 @@ namespace Basket.Score.Service
 #endif
         }
 
-        public void AddModifier(ScoreModifier modifier)
+        public void AddModifier(ScoreModifierData modifier)
         {
             _modifiers.Add(modifier);
         }
 
-        public void RemoveModifier(ScoreModifier modifier)
+        public void RemoveModifier(ScoreModifierData modifier)
         {
             _modifiers.Remove(modifier);
         }

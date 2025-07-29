@@ -7,7 +7,7 @@ namespace Basket.Score.Service
     {
         void SetCurrentShootPoints(int points, bool isBackboard);
         void ApplyPoints();
-        void AddModifier(ScoreModifier modifier);
-        void RemoveModifier(ScoreModifier modifier);
+        void AddModifier(ScoreModifierData modifier);
+        void RemoveModifier(ScoreModifierData modifier);
     }
 }

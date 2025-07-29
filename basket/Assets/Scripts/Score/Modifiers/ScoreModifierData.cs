@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Basket.Score.Modifiers
 {
-    public abstract class ScoreModifier : ScriptableObject
+    public abstract class ScoreModifierData : ScriptableObject
     {
         [field: SerializeField]
         public ScoreModifierApplyMode ApplyMode { get; private set; }

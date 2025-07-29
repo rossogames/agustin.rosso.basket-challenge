@@ -5,9 +5,9 @@ namespace Basket.Score.Events
 {
     public struct ScoreModifierBackboardBonusRemovedEvent : IEvent
     {
-        public readonly ScoreModifierBackboardBonus ScoreModifier;
+        public readonly ScoreModifierBackboardBonusData ScoreModifier;
 
-        public ScoreModifierBackboardBonusRemovedEvent(ScoreModifierBackboardBonus scoreModifier)
+        public ScoreModifierBackboardBonusRemovedEvent(ScoreModifierBackboardBonusData scoreModifier)
         {
             ScoreModifier = scoreModifier;
         }

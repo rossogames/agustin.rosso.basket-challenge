@@ -20,7 +20,7 @@ namespace Basket.Gameplay.PhasesData
             public float TimeActive { get; private set; }
 
             [field: SerializeField]
-            public ScoreModifierBackboardBonus[] Modifiers { get; private set; }
+            public ScoreModifierBackboardBonusData[] Modifiers { get; private set; }
         }
     }
 }
