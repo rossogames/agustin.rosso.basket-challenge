@@ -10,6 +10,7 @@ namespace Basket.Gameplay.Phases
         private readonly GameplayShootPhaseData _data;
         private bool _isFirstTargetHitted;
         private bool _isSecondTargetHitted;
+        private bool _isMatchEnded;
 
         public GameplayShootPhase(GameplayStateMachine stateMachine, GameplayShootPhaseData data) : base(stateMachine)
         {
@@ -21,8 +22,9 @@ namespace Basket.Gameplay.Phases
             base.Enter();
             _isFirstTargetHitted = false;
             _isSecondTargetHitted = false;
+            _isMatchEnded = false;
 
-            await WaitShoot();
+            await ChangeNextPhase();
         }
 
         public override void OnEventInvoked(TargetHitEvent eventArg)
@@ -38,10 +40,20 @@ namespace Basket.Gameplay.Phases
             TryApplyPoints();
         }
 
-        private async Task WaitShoot()
+        public override void OnEventInvoked(MatchTimerEndedEvent eventArg)
+        {
+            base.OnEventInvoked(eventArg);
+            _isMatchEnded = true;
+        }
+
+        private async Task ChangeNextPhase()
         {
             await Task.Delay((int)(_data.WaitTime * 1000));
-            StateMachine.TransitionTo(StateMachine.AimPhase);
+
+            if (_isMatchEnded)
+                StateMachine.TransitionTo(StateMachine.MatchEndPhase);
+            else
+                StateMachine.TransitionTo(StateMachine.AimPhase);
         }
 
         private void TryApplyPoints()
