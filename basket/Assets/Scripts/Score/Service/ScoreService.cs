@@ -14,6 +14,8 @@ namespace Basket.Score.Service
 
         private int _currentShootPoints;
         private bool _currentShootIsBackboard;
+        private bool _isPerfectShot;
+
         private int _totalPoints;
         public List<ScoreModifierData> _modifiers;
 
@@ -27,10 +29,11 @@ namespace Basket.Score.Service
             _eventService = ServiceLocator.Get<IEventService>();
         }
 
-        public void SetCurrentShootPoints(int points, bool isBackboard)
+        public void SetCurrentShootPoints(int points, bool isBackboard, bool isPerfectShot)
         {
             _currentShootPoints = points;
             _currentShootIsBackboard = isBackboard;
+            _isPerfectShot = isPerfectShot;
         }
 
         public void ApplyPoints()
@@ -38,7 +41,7 @@ namespace Basket.Score.Service
             var modifiedPoints = GetModifiedPoints();
             _totalPoints += modifiedPoints;
 
-            _eventService.Raise(new ScoreChangedEvent(modifiedPoints, _totalPoints));
+            _eventService.Raise(new ScoreChangedEvent(modifiedPoints, _totalPoints, _isPerfectShot));
 #if UNITY_EDITOR
             Debug.Log($"Points applied: {modifiedPoints}. Total points: {_totalPoints}");
 #endif

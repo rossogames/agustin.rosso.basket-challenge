@@ -40,12 +40,14 @@ namespace Basket.Gameplay.Components.UI
             if (_flyCoroutine != null)
                 StopCoroutine(_flyCoroutine);
 
-            _flyCoroutine = StartCoroutine(SetScoreText(eventArg.AppliedPoints));
+            _flyCoroutine = StartCoroutine(SetScoreText(eventArg.AppliedPoints, eventArg.IsPerfectShot));
         }
 
-        private IEnumerator SetScoreText(int score)
+        private IEnumerator SetScoreText(int score, bool isPerfectShoot)
         {
-            _scoreLabel.text = $"+{score} pts";
+            var perfectText = isPerfectShoot ? "PERFECT<br>" : "";
+            _scoreLabel.text = $"{perfectText}+{score} pts";
+
             yield return _waitfly;
             _scoreLabel.text = string.Empty;
         }

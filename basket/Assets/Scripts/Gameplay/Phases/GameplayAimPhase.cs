@@ -87,11 +87,10 @@ namespace Basket.Gameplay.Phases
 
             ThrowBall(shootingTarget, missingOffSet);
 
-            int score = targetBasketAccuracy == 1 || targetBackboardAccuracy == 1f ?
-                _data.PerfectShotScore :
-                _data.DefaultShotScore;
+            bool isPerfectShot = targetBasketAccuracy == 1 || targetBackboardAccuracy == 1f;
+            int score = isPerfectShot ? _data.PerfectShotScore : _data.DefaultShotScore;
 
-            _scoreService.SetCurrentShootPoints(score, isBackboardShoot);
+            _scoreService.SetCurrentShootPoints(score, isBackboardShoot, isPerfectShot);
         }
 
         private void ThrowBall(ShootingTarget shootingTarget, Vector3 missOffset)
