@@ -2,6 +2,7 @@ using Basket.Gameplay.Events;
 using Basket.Gameplay.PhasesData;
 using Basket.Gameplay.Service;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Basket.Gameplay.Phases
@@ -10,6 +11,9 @@ namespace Basket.Gameplay.Phases
     {
         private readonly GameplayAimPhaseData _data;
         private AimSetting _currentAimSetting;
+        private int _previousScore;
+        private bool _mustChangePlayerPosition;
+        private int _currentPositionIndex;
 
         public GameplayAimPhase(GameplayStateMachine stateMachine, GameplayAimPhaseData data) : base(stateMachine)
         {
@@ -19,6 +23,12 @@ namespace Basket.Gameplay.Phases
         public override void Enter()
         {
             base.Enter();
+            _currentPositionIndex = 0;
+
+            var currentScore = _scoreService.GetScore();
+            _mustChangePlayerPosition =  currentScore > _previousScore;
+            _previousScore = currentScore;
+
             StartAim();
         }
 
@@ -39,10 +49,19 @@ namespace Basket.Gameplay.Phases
 
         private void StartAim()
         {
-            var positionIndex = UnityEngine.Random.Range(0, _data.Targets.Length);
-            _currentAimSetting = _data.Targets[positionIndex];
+            if (_mustChangePlayerPosition)
+                SetNextPositionIndex();
 
+            _currentAimSetting = _data.Targets[_currentPositionIndex];
             _eventService.Raise(new AimStartedEvent(_data.AimUiHeight, _data.CameraDistanceFromBall, _currentAimSetting));
+        }
+
+        private void SetNextPositionIndex()
+        {
+            var indices = Enumerable.Range(0, _data.Targets.Length).ToList();
+            indices.Remove(_currentPositionIndex);
+            var randomIndex = UnityEngine.Random.Range(0, indices.Count);
+            _currentPositionIndex = indices[randomIndex];
         }
 
         private void Shoot(float shootDistance)
