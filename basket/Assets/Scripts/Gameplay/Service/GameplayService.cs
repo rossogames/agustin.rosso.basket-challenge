@@ -1,5 +1,5 @@
 using Basket.Gameplay.Events;
-using Basket.Gameplay.Mechanics;
+using Basket.Gameplay.Timers;
 using Rossoforge.Core.Events;
 using Rossoforge.Core.Services;
 using Rossoforge.Services;

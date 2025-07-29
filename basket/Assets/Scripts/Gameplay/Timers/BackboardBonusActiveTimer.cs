@@ -6,7 +6,7 @@ using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using static Basket.Gameplay.PhasesData.GameplayStartPhaseData;
 
-namespace Basket.Gameplay.Mechanics
+namespace Basket.Gameplay.Timers
 {
     public class BackboardBonusActiveTimer : TimerBase, IEventListener<ScoreModifierAppliedEvent>
     {

@@ -1,7 +1,7 @@
 using Basket.Timer;
 using static Basket.Gameplay.PhasesData.GameplayStartPhaseData;
 
-namespace Basket.Gameplay.Mechanics
+namespace Basket.Gameplay.Timers
 {
     public class BackboardBonusInactiveTimer : TimerBase
     {

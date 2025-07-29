@@ -1,4 +1,4 @@
-using Basket.Gameplay.Mechanics;
+using Basket.Gameplay.Timers;
 using Basket.Gameplay.PhasesData;
 using Basket.Gameplay.Service;
 
