@@ -3,7 +3,7 @@ using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
 
-namespace Basket.Gameplay.Components
+namespace Basket.Gameplay.Components.Environment
 {
     public class TargetTrigger : MonoBehaviour
     {

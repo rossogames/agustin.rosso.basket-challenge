@@ -50,7 +50,7 @@ namespace Basket.Gameplay.Phases
             var shootRelativePosition = shootDistance / _data.AimUiHeight;
             var targetBasketAccuracy = GetShootAcurracy(_currentAimSetting.BasketTarget, shootRelativePosition);
             var targetBackboardAccuracy = GetShootAcurracy(_currentAimSetting.BackboardTarget, shootRelativePosition);
-            
+
             var missingOffSet = Vector3.zero;
             ShootingTarget shootingTarget;
 
@@ -68,12 +68,12 @@ namespace Basket.Gameplay.Phases
 
             ThrowBall(shootingTarget, missingOffSet);
 
-            int score = targetBasketAccuracy == 1 || targetBackboardAccuracy == 1f ? 
-                _data.PerfectShotScore : 
+            int score = targetBasketAccuracy == 1 || targetBackboardAccuracy == 1f ?
+                _data.PerfectShotScore :
                 _data.DefaultShotScore;
 
             _scoreService.SetCurrentShootPoints(score, isBackboardShoot);
-         }
+        }
 
         private void ThrowBall(ShootingTarget shootingTarget, Vector3 missOffset)
         {

@@ -1,12 +1,11 @@
 using Rossoforge.Scenes.Service;
 using Rossoforge.Services;
-using UnityEditor;
 
 namespace Basket.Main
 {
     public class MainPresenter
     {
-        private ISceneService _sceneService;   
+        private ISceneService _sceneService;
 
         public MainPresenter()
         {

@@ -1,15 +1,15 @@
-using Basket.Score.Service;
 using Basket.Gameplay.Service;
+using Basket.Score.Service;
+using Basket.Timer;
 using Rossoforge.Core.Events;
 using Rossoforge.Events.Service;
 using Rossoforge.Scenes.Data;
 using Rossoforge.Scenes.Service;
 using Rossoforge.Services;
 using UnityEngine;
-using Basket.Timer;
 
 namespace Basket.Boot
-{ 
+{
     public class Boot : MonoBehaviour
     {
         [SerializeField]

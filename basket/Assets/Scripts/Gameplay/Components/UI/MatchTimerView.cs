@@ -4,7 +4,7 @@ using Rossoforge.Services;
 using TMPro;
 using UnityEngine;
 
-namespace Basket.Gameplay.UI
+namespace Basket.Gameplay.Components.UI
 {
     public class MatchTimerView : MonoBehaviour,
         IEventListener<MatchTimerStartedEvent>,

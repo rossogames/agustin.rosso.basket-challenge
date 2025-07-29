@@ -2,7 +2,7 @@ using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
 
-namespace Basket.Gameplay.Components
+namespace Basket.Gameplay.Components.Environment
 {
     public class InputHandler : MonoBehaviour
     {
@@ -39,7 +39,7 @@ namespace Basket.Gameplay.Components
             else if (Input.GetMouseButton(0) && _isDragging)
             {
                 _endScreenPos = Input.mousePosition;
-                if(_endScreenPos.y < _startScreenPos.y)
+                if (_endScreenPos.y < _startScreenPos.y)
                     _endScreenPos.y = _startScreenPos.y;
             }
             else if (Input.GetMouseButtonUp(0))

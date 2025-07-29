@@ -5,10 +5,10 @@ using Rossoforge.Services;
 
 namespace Basket.Gameplay.Popups.MatchResult
 {
-    public class PopupMatchResultPresenter : 
+    public class PopupMatchResultPresenter :
         PopupPresenter<PopupMatchResultView, PopupMatchResultPresenter, PopupMatchResultData>
     {
-        public PopupMatchResultPresenter(PopupMatchResultView view) 
+        public PopupMatchResultPresenter(PopupMatchResultView view)
             : base(ServiceLocator.Get<IEventService>(), view)
         {
 

@@ -9,7 +9,7 @@ using static Basket.Gameplay.PhasesData.GameplayStartPhaseData;
 
 namespace Basket.Gameplay.Timers
 {
-    public class BackboardBonusActiveTimer : TimerBase, 
+    public class BackboardBonusActiveTimer : TimerBase,
         IEventListener<ScoreModifierAppliedEvent>,
         IEventListener<MatchTimerEndedEvent>
     {

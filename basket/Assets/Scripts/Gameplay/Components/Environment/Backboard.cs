@@ -4,9 +4,9 @@ using Rossoforge.Services;
 using TMPro;
 using UnityEngine;
 
-namespace Basket.Gameplay.Components
+namespace Basket.Gameplay.Components.Environment
 {
-    public class Backboard : MonoBehaviour, 
+    public class Backboard : MonoBehaviour,
         IEventListener<ScoreModifierBackboardBonusAddedEvent>,
         IEventListener<ScoreModifierBackboardBonusRemovedEvent>
     {

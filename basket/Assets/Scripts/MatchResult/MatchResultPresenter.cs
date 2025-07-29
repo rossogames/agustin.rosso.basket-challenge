@@ -5,7 +5,7 @@ namespace Basket.MatchResult
 {
     public class MatchResultPresenter
     {
-        private ISceneService _sceneService;   
+        private ISceneService _sceneService;
 
         public MatchResultPresenter()
         {

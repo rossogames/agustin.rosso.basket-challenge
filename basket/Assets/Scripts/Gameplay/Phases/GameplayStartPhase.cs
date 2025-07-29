@@ -1,6 +1,6 @@
-using Basket.Gameplay.Timers;
 using Basket.Gameplay.PhasesData;
 using Basket.Gameplay.Service;
+using Basket.Gameplay.Timers;
 
 namespace Basket.Gameplay.Phases
 {

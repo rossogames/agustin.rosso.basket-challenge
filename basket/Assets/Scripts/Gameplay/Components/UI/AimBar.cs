@@ -5,7 +5,7 @@ using Rossoforge.Services;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Basket.UI
+namespace Basket.Gameplay.Components.UI
 {
     public class AimBar : MonoBehaviour,
         IEventListener<InputDragEvent>,

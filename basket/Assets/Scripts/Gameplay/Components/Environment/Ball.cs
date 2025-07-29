@@ -1,10 +1,9 @@
 using Basket.Gameplay.Events;
-using Basket.Gameplay.PhasesData;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
 
-namespace Basket.Gameplay.Components
+namespace Basket.Gameplay.Components.Environment
 {
     [RequireComponent(typeof(Rigidbody))]
     public class Ball : MonoBehaviour,

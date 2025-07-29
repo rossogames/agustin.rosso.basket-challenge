@@ -1,18 +1,17 @@
 using Basket.Gameplay.Events;
 using Basket.Gameplay.Popups.MatchResult;
-using Basket.Gameplay.Service;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
 using UnityEngine;
 
-namespace Basket.Gameplay.Components
+namespace Basket.Gameplay.Components.Environment
 {
     public class GameplayHandler : MonoBehaviour, IEventListener<MatchEndedEvent>
     {
         [SerializeField]
         private PopupMatchResultView _popupMatchResult;
 
-        private IEventService _eventService;    
+        private IEventService _eventService;
 
         private void Awake()
         {
