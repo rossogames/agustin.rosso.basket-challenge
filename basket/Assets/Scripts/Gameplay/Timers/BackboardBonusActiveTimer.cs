@@ -1,3 +1,4 @@
+using Basket.Gameplay.Events;
 using Basket.Score.Events;
 using Basket.Score.Modifiers;
 using Basket.Score.Service;
@@ -8,19 +9,19 @@ using static Basket.Gameplay.PhasesData.GameplayStartPhaseData;
 
 namespace Basket.Gameplay.Timers
 {
-    public class BackboardBonusActiveTimer : TimerBase, IEventListener<ScoreModifierAppliedEvent>
+    public class BackboardBonusActiveTimer : TimerBase, 
+        IEventListener<ScoreModifierAppliedEvent>,
+        IEventListener<MatchTimerEndedEvent>
     {
-        private IEventService _eventService;
         private IScoreService _scoreService;
 
         private BackboardBonusSettings _backboardBonus;
         private ScoreModifierBackboardBonusData _currentBackboardBonus;
+        private bool _isMatchEnded;
 
         public BackboardBonusActiveTimer(BackboardBonusSettings backboardBonus) : base(backboardBonus.TimeActive)
         {
             _backboardBonus = backboardBonus;
-
-            _eventService = ServiceLocator.Get<IEventService>();
             _scoreService = ServiceLocator.Get<IScoreService>();
 
             _eventService.RegisterListener<ScoreModifierAppliedEvent>(this);
@@ -30,17 +31,26 @@ namespace Basket.Gameplay.Timers
         {
             base.OnStart();
             TryAddBackboardBonus();
+            _eventService.RegisterListener<MatchTimerEndedEvent>(this);
         }
         protected override void OnTimerEnd()
         {
             base.OnTimerEnd();
             TryRemoveBackboardBonus();
+            StartTimerWaitForNextBackboardBonus();
+
+            _eventService.UnregisterListener<MatchTimerEndedEvent>(this);
         }
 
         public void OnEventInvoked(ScoreModifierAppliedEvent eventArg)
         {
             if (eventArg.ScoreModifier.Equals(_currentBackboardBonus))
                 OnTimerEnd();
+        }
+        public void OnEventInvoked(MatchTimerEndedEvent eventArg)
+        {
+            _isMatchEnded = true;
+            OnTimerEnd();
         }
 
         private void TryAddBackboardBonus()
@@ -62,7 +72,6 @@ namespace Basket.Gameplay.Timers
             _eventService.Raise(new ScoreModifierBackboardBonusRemovedEvent(_currentBackboardBonus));
 
             _eventService.UnregisterListener<ScoreModifierAppliedEvent>(this);
-            StartTimerWaitForNextBackboardBonus();
         }
 
         private ScoreModifierBackboardBonusData GetRandomBackboardBonus()
@@ -98,6 +107,9 @@ namespace Basket.Gameplay.Timers
 
         private void StartTimerWaitForNextBackboardBonus()
         {
+            if (_isMatchEnded)
+                return;
+
             new BackboardBonusInactiveTimer(_backboardBonus).Start();
             // when its completed will activate the backboard bonus
         }

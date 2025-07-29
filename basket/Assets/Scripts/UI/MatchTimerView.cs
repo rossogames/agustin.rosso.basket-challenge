@@ -46,7 +46,7 @@ namespace Basket.Gameplay.UI
 
         public void OnEventInvoked(MatchTimerEndedEvent eventArg)
         {
-            SetTimerText(0);
+            SetTimerText(eventArg.MatchEndedTime);
         }
 
         private void SetTimerText(float time)

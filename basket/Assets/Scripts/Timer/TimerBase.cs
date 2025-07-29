@@ -1,3 +1,4 @@
+using Rossoforge.Core.Events;
 using Rossoforge.Services;
 
 namespace Basket.Timer
@@ -5,6 +6,8 @@ namespace Basket.Timer
     public class TimerBase
     {
         private ITimerService _timerService;
+        protected IEventService _eventService;
+
         private bool _isStarted;
 
         protected float Duration { get; private set; }
@@ -15,6 +18,8 @@ namespace Basket.Timer
             Duration = duration;
 
             _timerService = ServiceLocator.Get<ITimerService>();
+            _eventService = ServiceLocator.Get<IEventService>();
+
             _timerService.RegisterTimer(this);
         }
 

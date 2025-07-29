@@ -31,6 +31,9 @@ namespace Basket.Timer
 
         public void Update()
         {
+            if (_timers.Count == 0)
+                return;
+
             List<TimerBase> timersCopy;
             lock (_lock)
             {

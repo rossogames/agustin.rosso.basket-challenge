@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c49fa658360074ab04ac0a17ea3e9a, type: 3}
   m_Name: GameplayStartPhaseData
   m_EditorClassIdentifier: 
-  <MatchDuration>k__BackingField: 10
+  <MatchDuration>k__BackingField: 120
   <BackboardBonus>k__BackingField:
-    <TimeInactive>k__BackingField: 2
-    <TimeActive>k__BackingField: 5
+    <TimeInactive>k__BackingField: 20
+    <TimeActive>k__BackingField: 10
     <Modifiers>k__BackingField:
     - {fileID: 11400000, guid: 335c4ee3f5486ed448d3d0f9c6729acc, type: 2}
     - {fileID: 11400000, guid: ed128360f29bd104899d80727474cad8, type: 2}

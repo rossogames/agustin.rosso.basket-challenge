@@ -1,20 +1,15 @@
 using Basket.Gameplay.Events;
 using Basket.Timer;
-using Rossoforge.Core.Events;
-using Rossoforge.Services;
 using System;
-using UnityEngine;
 
 namespace Basket.Gameplay.Timers
 {
     public class MatchTimer : TimerBase
     {
-        private IEventService _eventService;
         private int _currentTimeSeconds;
 
         public MatchTimer(float matchDuration) : base(matchDuration)
         {
-            _eventService = ServiceLocator.Get<IEventService>();
         }
 
         protected override void OnStart()
@@ -32,7 +27,6 @@ namespace Basket.Gameplay.Timers
             {
                 _currentTimeSeconds = seconds;
                 _eventService.Raise(new MatchTimerUpdatedEvent(CurrentTime));
-                Debug.Log($"Match Timer Updated: {CurrentTime} seconds");
             }
         }
 
