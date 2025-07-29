@@ -26,7 +26,7 @@ namespace Basket.Gameplay.Popups.MatchResult
         public override void OnDeactivate()
         {
             base.OnDeactivate();
-            _eventService.Raise<GameplayEndedEvent>();
+            _eventService.Raise<PopupMatchResultClosedEvent>();
         }
 
         private void SetScore()

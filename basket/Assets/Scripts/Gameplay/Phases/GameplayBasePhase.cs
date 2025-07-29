@@ -46,7 +46,7 @@ namespace Basket.Gameplay.Phases
         public virtual void OnEventInvoked(TargetHitEvent eventArg)
         {
         }
-        public virtual void OnEventInvoked(GameplayEndedEvent eventArg)
+        public virtual void OnEventInvoked(PopupMatchResultClosedEvent eventArg)
         {
         }
     }

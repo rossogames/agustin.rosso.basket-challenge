@@ -11,7 +11,7 @@ namespace Basket.Gameplay.Service
         IEventListener<InputDragEndedEvent>,
         IEventListener<TargetHitEvent>,
         IEventListener<MatchTimerEndedEvent>,
-        IEventListener<GameplayEndedEvent>
+        IEventListener<PopupMatchResultClosedEvent>
     {
         private IEventService _eventService;
         private GameplayServiceData _data;
@@ -31,7 +31,7 @@ namespace Basket.Gameplay.Service
             _eventService.RegisterListener<InputDragEndedEvent>(this);
             _eventService.RegisterListener<TargetHitEvent>(this);
             _eventService.RegisterListener<MatchTimerEndedEvent>(this);
-            _eventService.RegisterListener<GameplayEndedEvent>(this);
+            _eventService.RegisterListener<PopupMatchResultClosedEvent>(this);
 
             StateMachine = new GameplayStateMachine(_data);
             StateMachine.StartMachine(StateMachine.IdlePhase);
@@ -43,7 +43,7 @@ namespace Basket.Gameplay.Service
             _eventService.UnregisterListener<InputDragEndedEvent>(this);
             _eventService.UnregisterListener<TargetHitEvent>(this);
             _eventService.UnregisterListener<MatchTimerEndedEvent>(this);
-            _eventService.UnregisterListener<GameplayEndedEvent>(this);
+            _eventService.UnregisterListener<PopupMatchResultClosedEvent>(this);
         }
 
         public void Update()
@@ -55,7 +55,7 @@ namespace Basket.Gameplay.Service
         public void OnEventInvoked(InputDragEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(TargetHitEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
         public void OnEventInvoked(MatchTimerEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
-        public void OnEventInvoked(GameplayEndedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
+        public void OnEventInvoked(PopupMatchResultClosedEvent eventArg) => StateMachine.CurrentState?.OnEventInvoked(eventArg);
 
     }
 }

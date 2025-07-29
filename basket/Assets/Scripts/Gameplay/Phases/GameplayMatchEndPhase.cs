@@ -21,7 +21,7 @@ namespace Basket.Gameplay.Phases
             // this open the result popup, then rise the GameplayEndedEvent
         }
 
-        public override void OnEventInvoked(GameplayEndedEvent eventArg)
+        public override void OnEventInvoked(PopupMatchResultClosedEvent eventArg)
         {
             base.OnEventInvoked(eventArg);
             StateMachine.TransitionTo(StateMachine.IdlePhase);
