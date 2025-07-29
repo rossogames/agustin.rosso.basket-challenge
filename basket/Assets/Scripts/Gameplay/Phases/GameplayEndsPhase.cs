@@ -3,9 +3,9 @@ using Basket.Gameplay.Service;
 
 namespace Basket.Gameplay.Phases
 {
-    public class GameplayMatchEndPhase : GameplayBasePhase
+    public class GameplayEndsPhase : GameplayBasePhase
     {
-        public GameplayMatchEndPhase(GameplayStateMachine stateMachine) : base(stateMachine)
+        public GameplayEndsPhase(GameplayStateMachine stateMachine) : base(stateMachine)
         {
         }
 
@@ -24,7 +24,6 @@ namespace Basket.Gameplay.Phases
         public override void OnEventInvoked(PopupMatchResultClosedEvent eventArg)
         {
             base.OnEventInvoked(eventArg);
-            StateMachine.TransitionTo(StateMachine.IdlePhase);
             _sceneService.ChangeScene("MatchResult");
         }
     }

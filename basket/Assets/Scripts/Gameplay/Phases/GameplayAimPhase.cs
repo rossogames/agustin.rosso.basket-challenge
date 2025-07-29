@@ -38,7 +38,7 @@ namespace Basket.Gameplay.Phases
         public override void OnEventInvoked(MatchTimerEndedEvent eventArg)
         {
             base.OnEventInvoked(eventArg);
-            StateMachine.TransitionTo(StateMachine.MatchEndPhase);
+            StateMachine.TransitionTo(StateMachine.EndsPhase);
         }
 
         private void StartAim()

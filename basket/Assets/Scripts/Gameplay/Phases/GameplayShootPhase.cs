@@ -51,7 +51,7 @@ namespace Basket.Gameplay.Phases
             await Task.Delay((int)(_data.WaitTime * 1000));
 
             if (_isMatchEnded)
-                StateMachine.TransitionTo(StateMachine.MatchEndPhase);
+                StateMachine.TransitionTo(StateMachine.EndsPhase);
             else
                 StateMachine.TransitionTo(StateMachine.AimPhase);
         }

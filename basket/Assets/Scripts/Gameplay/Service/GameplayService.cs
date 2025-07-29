@@ -51,7 +51,7 @@ namespace Basket.Gameplay.Service
         public void OnEventInvoked(GameplayLoadedEvent eventArg)
         {
             StateMachine = new GameplayStateMachine(_data);
-            StateMachine.StartMachine(StateMachine.IdlePhase);
+            StateMachine.StartMachine(StateMachine.StartPhase);
 
             StateMachine.CurrentState?.OnEventInvoked(eventArg);
         }
