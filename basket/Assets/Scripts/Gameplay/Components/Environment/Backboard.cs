@@ -1,3 +1,4 @@
+using Basket.Gameplay.Events;
 using Basket.Score.Events;
 using Rossoforge.Core.Events;
 using Rossoforge.Services;
@@ -58,6 +59,12 @@ namespace Basket.Gameplay.Components.Environment
             _backboardMeshRenderer.materials = materials;
 
             _pointsLabel.text = text;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ball"))
+                _eventService.Raise<BackboardHitEvent>();
         }
     }
 }

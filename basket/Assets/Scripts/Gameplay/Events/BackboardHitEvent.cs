@@ -2,7 +2,7 @@ using Rossoforge.Core.Events;
 
 namespace Basket.Gameplay.Events
 {
-    public struct MatchTimerEndedEvent : IEvent
+    public struct BackboardHitEvent : IEvent
     {
     }
 }

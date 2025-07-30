@@ -36,17 +36,17 @@ namespace Basket.Gameplay.Components.UI
 
         public void OnEventInvoked(MatchTimerStartedEvent eventArg)
         {
-            SetTimerText(0);
+            SetTimerText(eventArg.MatchDuration);
         }
 
         public void OnEventInvoked(MatchTimerUpdatedEvent eventArg)
         {
-            SetTimerText(eventArg.CurrentMatchTime);
+            SetTimerText(eventArg.RemainingMatchTime);
         }
 
         public void OnEventInvoked(MatchTimerEndedEvent eventArg)
         {
-            SetTimerText(eventArg.MatchEndedTime);
+            SetTimerText(0);
         }
 
         private void SetTimerText(float time)

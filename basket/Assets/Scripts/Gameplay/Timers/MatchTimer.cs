@@ -26,14 +26,14 @@ namespace Basket.Gameplay.Timers
             if (seconds > _currentTimeSeconds)
             {
                 _currentTimeSeconds = seconds;
-                _eventService.Raise(new MatchTimerUpdatedEvent(CurrentTime));
+                _eventService.Raise(new MatchTimerUpdatedEvent(Duration - CurrentTime));
             }
         }
 
         protected override void OnTimerEnd()
         {
             base.OnTimerEnd();
-            _eventService.Raise(new MatchTimerEndedEvent(Duration));
+            _eventService.Raise(new MatchTimerEndedEvent());
         }
     }
 }

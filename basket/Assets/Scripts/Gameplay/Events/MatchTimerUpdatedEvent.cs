@@ -4,11 +4,11 @@ namespace Basket.Gameplay.Events
 {
     public struct MatchTimerUpdatedEvent : IEvent
     {
-        readonly public float CurrentMatchTime;
+        readonly public float RemainingMatchTime;
 
-        public MatchTimerUpdatedEvent(float currentMatchTime)
+        public MatchTimerUpdatedEvent(float remainingMatchTime)
         {
-            CurrentMatchTime = currentMatchTime;
+            RemainingMatchTime = remainingMatchTime;
         }
     }
 }
